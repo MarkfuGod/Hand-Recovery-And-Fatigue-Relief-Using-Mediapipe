@@ -1,4 +1,5 @@
 <script setup>
+
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import ElText from './ElTest.vue'
@@ -6,6 +7,7 @@ import image1 from './assets/6.jpg'
 import image3 from './components/images/10.png'
 import MeTest from './MeTest.vue'
 import image2 from './components/images/8bf69b8ce619d69d9d31a4d9cdcb595d.jpeg'
+
 </script>
 
 <template>
