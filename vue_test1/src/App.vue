@@ -1,6 +1,12 @@
 <script setup>
 
+import HelloWorld from './components/HelloWorld.vue'
+import TheWelcome from './components/TheWelcome.vue'
+import ElText from './ElTest.vue'
+import image1 from './assets/6.jpg'
+import image3 from './components/images/10.png'
 import MeTest from './MeTest.vue'
+import image2 from './components/images/8bf69b8ce619d69d9d31a4d9cdcb595d.jpeg'
 
 </script>
 
@@ -24,7 +30,16 @@ import MeTest from './MeTest.vue'
 <div v-else-if="elTestShow===1">
   <MeTest></MeTest>
 </div>
-
+<!--  <button @click="show">33</button>-->
+<!--  <button @click="ss">44</button>-->
+<!--&lt;!&ndash;  <ElText></ElText>&ndash;&gt;-->
+<!--  <div class="common-layout" >-->
+<!--    <ElText v-if="elTestShow===1"></ElText>-->
+<!--  </div>-->
+<!--<div v-show="elTestShow===0">-->
+<!--  <MeTest ></MeTest>-->
+<!--</div>-->
+<!--  <MeTest></MeTest>-->
 </template>
 
 <script>
@@ -45,7 +60,7 @@ export default {
 methods:{
     show(){
       this.elTestShow=1;
-      // alert(this.elTestShow)
+      alert(this.elTestShow)
     },
   ss(){
     alert(this.elTestShow)

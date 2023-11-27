@@ -1,18 +1,43 @@
 <template>
   <div>
+<!--    <video ref="video" autoplay playsinline muted></video>-->
+<!--    <canvas ref="canvas"></canvas>-->
+<!--    <button @click="handleClick">jui</button>-->
+
+
+
   </div>
 
+
+
+
+
+
+
+<!--  <h1>Recognize hand gestures using the MediaPipe HandGestureRecognizer task</h1>-->
+
   <section id="demos" class="invisible">
+<!--    <h2>Demo: Recognize gestures</h2>-->
+<!--    <p><em>Click on an image below</em> to identify the gestures in the image.</p>-->
+<!---->
+<!--    <div class="detectOnClick">-->
+<!--      <img src="https://assets.codepen.io/9177687/idea-gcbe74dc69_1920.jpg" crossorigin="anonymous" title="Click to get recognize!" />-->
+<!--      <p class="classification removed"></p>-->
+<!--    </div>-->
+<!--    <div class="detectOnClick">-->
+<!--      <img src="https://assets.codepen.io/9177687/thumbs-up-ga409ddbd6_1.png" crossorigin="anonymous" title="Click to get recognize!" />-->
+<!--      <p class="classification removed"></p>-->
+<!--    </div>-->
 
-
+<!--    <h2><br>Demo: Webcam continuous hand gesture detection</h2>-->
+<!--    <p>Use your hand to make gestures in front of the camera to get gesture classification. <br>Click <b>enable webcam</b> below and grant access to the webcam if prompted.</p>-->
     <div class="image-container">
-      <img :class="borderClass(0)" src="src/components/images/com_4.jpeg" alt="Image 1">
-      <img :class="borderClass(1)" src="src/components/images/com_5.jpg" alt="Image 2">
-      <img :class="borderClass(2)" src="src/components/images/com_23.png" alt="Image 3">
-      <img :class="borderClass(3)" src="src/components/images/com_24.png" alt="Image 4">
-      <img :class="borderClass(4)" src="src/components/images/com_38.jpg" alt="Image 5">
+      <img src="image1.jpg" alt="Image 1">
+      <img src="image2.jpg" alt="Image 2">
+      <img src="image3.jpg" alt="Image 3">
+      <img src="image4.jpg" alt="Image 4">
+      <img src="image5.jpg" alt="Image 5">
     </div>
-
     <div id="liveView" class="videoView">
       <button id="webcamButton" class="mdc-button mdc-button--raised">
         <span class="mdc-button__ripple"></span>
@@ -42,9 +67,6 @@ import {
 export default {
   data() {
     return {
-      bianse:1,
-
-
       worker: null,
       camera: null,
       gestureRecognizer: null,
@@ -58,17 +80,6 @@ export default {
       results: undefined,
     };
   },
-
-
-  computed: {
-    borderClass() {
-      return (index) => {
-        return this.bianse === index ? 'border-show' : 'border-hide';
-      }
-    }
-  },
-
-
   async mounted() {
     this.demosSection = document.getElementById("demos");
     this.createGestureRecognizer();
@@ -350,24 +361,6 @@ section {
 .detectOnClick {
   z-index: 0;
   font-size: calc(8px + 1.2vw);
-}
-.image-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.image-container img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover; /* 这将保持图片的纵横比 */
-  //border: 2px solid red;
-}
-
-.border-show {
-  border: 2px solid red;
-}
-.border-hide {
-  border: none;
 }
 
 .detectOnClick img {
