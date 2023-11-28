@@ -1,43 +1,32 @@
 <template>
   <div>
-<!--    <video ref="video" autoplay playsinline muted></video>-->
-<!--    <canvas ref="canvas"></canvas>-->
-<!--    <button @click="handleClick">jui</button>-->
-
-
-
   </div>
 
-
-
-
-
-
-
-<!--  <h1>Recognize hand gestures using the MediaPipe HandGestureRecognizer task</h1>-->
-
   <section id="demos" class="invisible">
-<!--    <h2>Demo: Recognize gestures</h2>-->
-<!--    <p><em>Click on an image below</em> to identify the gestures in the image.</p>-->
-<!---->
-<!--    <div class="detectOnClick">-->
-<!--      <img src="https://assets.codepen.io/9177687/idea-gcbe74dc69_1920.jpg" crossorigin="anonymous" title="Click to get recognize!" />-->
-<!--      <p class="classification removed"></p>-->
-<!--    </div>-->
-<!--    <div class="detectOnClick">-->
-<!--      <img src="https://assets.codepen.io/9177687/thumbs-up-ga409ddbd6_1.png" crossorigin="anonymous" title="Click to get recognize!" />-->
-<!--      <p class="classification removed"></p>-->
-<!--    </div>-->
-
-<!--    <h2><br>Demo: Webcam continuous hand gesture detection</h2>-->
-<!--    <p>Use your hand to make gestures in front of the camera to get gesture classification. <br>Click <b>enable webcam</b> below and grant access to the webcam if prompted.</p>-->
     <div class="image-container">
-      <img src="image1.jpg" alt="Image 1">
-      <img src="image2.jpg" alt="Image 2">
-      <img src="image3.jpg" alt="Image 3">
-      <img src="image4.jpg" alt="Image 4">
-      <img src="image5.jpg" alt="Image 5">
+
+      <div class="image-item">
+        <img :class="borderClass(0)" src="src/components/images/com_4.jpeg" alt="Image 1">
+        <p>手势1</p>
+      </div>
+      <div class="image-item">
+        <img :class="borderClass(1)" src="src/components/images/com_5.jpg" alt="Image 2">
+        <p>手势2</p>
+      </div>
+      <div class="image-item">
+        <img :class="borderClass(2)" src="src/components/images/com_23.png" alt="Image 3">
+        <p>手势3</p>
+      </div>
+      <div class="image-item">
+        <img :class="borderClass(3)" src="src/components/images/com_24.png" alt="Image 4">
+        <p>手势4</p>
+      </div>
+      <div class="image-item">
+        <img :class="borderClass(4)" src="src/components/images/com_38.jpg" alt="Image 5">
+        <p>手势5</p>
+      </div>
     </div>
+
     <div id="liveView" class="videoView">
       <button id="webcamButton" class="mdc-button mdc-button--raised">
         <span class="mdc-button__ripple"></span>
@@ -67,6 +56,9 @@ import {
 export default {
   data() {
     return {
+      bianse:1,//其值代表哪个手势图出现边框
+
+
       worker: null,
       camera: null,
       gestureRecognizer: null,
@@ -80,9 +72,19 @@ export default {
       results: undefined,
     };
   },
+
+  computed: {
+    borderClass() {
+      return (index) => {
+        return this.bianse === index ? 'border-show' : 'border-hide';
+      }
+    }
+  },
+
+
   async mounted() {
     this.demosSection = document.getElementById("demos");
-    this.createGestureRecognizer();
+    await this.createGestureRecognizer();
     this.enableWebcamButton = document.getElementById("webcamButton");
     if (this.hasGetUserMedia()) {
       this.enableWebcamButton.addEventListener("click", this.enableCam);
@@ -90,7 +92,7 @@ export default {
       console.warn("getUserMedia() is not supported by your browser");
     }
 
-    this.$nextTick(() => {
+    await this.$nextTick(() => {
       this.demosSection = document.getElementById("demos");
       this.createGestureRecognizer();
       this.enableWebcamButton = document.getElementById("webcamButton");
@@ -361,6 +363,34 @@ section {
 .detectOnClick {
   z-index: 0;
   font-size: calc(8px + 1.2vw);
+}
+.image-container {
+  display: flex;
+  justify-content: space-between;
+  //justify-content: space-between;
+  //width: 500px; /* 设置矩形窗口的宽度 */
+  //height: 150px; /* 设置矩形窗口的高度 */
+  border: 1px solid black; /* 设置矩形窗口的边框 */
+  padding: 10px; /* 设置矩形窗口的内边距 */
+}
+.image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-container img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* 这将保持图片的纵横比 */
+  //border: 2px solid red;
+}
+
+.border-show {
+  border: 4px solid red;
+}
+.border-hide {
+  border: none;
 }
 
 .detectOnClick img {
