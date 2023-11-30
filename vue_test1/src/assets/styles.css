@@ -1,0 +1,83 @@
+/* 页面容器 用于测试*/
+/* div{
+  background-color: rgb(46, 57, 139);
+} */
+/* .el-header{
+  height: 100px;
+  background-color: sandybrown;
+}
+.el-main{
+  height: 550px;
+  background-color: darkcyan;
+}
+.el-footer{
+  height: 100px;
+  background-color: rgb(103, 244, 96);
+} */
+
+
+/* 返回主页按钮 */
+.back-button {
+  width: 120px;
+  height: 50px;
+  font-size: 18px;
+  background-color: rgb(80, 183, 124);
+  border: 2px solid rgb(80, 178, 124);
+  border-radius: 30px;
+  box-shadow: 0 2px 4px slategrey, 0 0 6px rgba(224, 88, 88, 0.04)
+   /* 背景色 */
+}
+
+/* 标题：基于手势的手部康复游戏 */
+.title {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold; /* 设置字体为加粗 */
+  font-size: 45px; /* 设置字体大小 */
+  /* color: rgb(77, 123, 50); */
+}
+
+.common-layout {
+  display: flex;
+  justify-content: space-around;
+}
+
+.image-button-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* 三个图片及按钮 */
+/* 容器 */
+.image-button-container {
+  margin-top: 160px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  /* border-radius: 30px; */
+  /* box-shadow: 0 2px 4px red, 0 0 6px red; */
+}
+
+/* 图片 */
+.image {
+  width: 340px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px black, 0 0 6px slategray;
+}
+
+/* 按钮 */
+.button {
+  margin-top: 36px;
+  width: 340px;
+  height: 60px;
+  background-color: rgb(243, 180, 125);
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgb(154, 121, 93), 0 0 6px rgb(180, 125, 76);
+  border: 2px solid rgb(243, 180, 125); /* 设置边框颜色 */
+}
