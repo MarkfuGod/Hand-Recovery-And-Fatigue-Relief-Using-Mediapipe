@@ -20,6 +20,8 @@ def vector_2d_angle(v1,v2):
 def hand_angle(hand_):
     '''
         获取对应手相关向量的二维角度,根据角度确定手势
+        这个角度是通过计算两个向量之间的角度得到的，这两个向量分别是从手腕到指关节的向量和从指关节到指尖的向量。
+        计算出的每个角度都被添加到一个列表中，然后返回这个列表。
     '''
     angle_list = []
     #---------------------------- thumb 大拇指角度
@@ -57,6 +59,7 @@ def hand_angle(hand_):
 def h_gesture(angle_list):
     '''
         # 二维约束的方法定义手势
+        每个手势都有一个特定的角度阈值，如果所有的角度都满足这个阈值，那么就认为是这个手势。
         # fist five gun love one six three thumbup yeah
     '''
     thr_angle = 65.
@@ -89,7 +92,7 @@ def detect():
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands(
             static_image_mode=False,
-            max_num_hands=1,
+            max_num_hands=2,
             min_detection_confidence=0.75,
             min_tracking_confidence=0.75)
     cap = cv2.VideoCapture(0)
@@ -101,6 +104,8 @@ def detect():
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
         if results.multi_hand_landmarks:
+            gesture_strs = []
+            avg_xs = []
             for hand_landmarks in results.multi_hand_landmarks:
                 mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
                 hand_local = []
@@ -111,7 +116,25 @@ def detect():
                 if hand_local:
                     angle_list = hand_angle(hand_local)
                     gesture_str = h_gesture(angle_list)
-                    cv2.putText(frame,gesture_str,(0,100),0,1.3,(0,0,255),3)
+                    gesture_strs.append(gesture_str)
+                    # Calculate the average x coordinate of the hand
+                    avgx = sum([point[0] for point in hand_local]) / len(hand_local)
+                    avg_xs.append(avgx)
+            # Decide the position of the text based on the average x coordinate
+            if len(gesture_strs) == 1:
+                text_pos = (0, 100)
+                cv2.putText(frame,gesture_strs[0],text_pos,0,1.3,(0,0,255),3)
+            elif len(gesture_strs) == 2:
+                if avg_xs[0] < avg_xs[1]:
+                    text_pos_left = (0, 100)
+                    text_pos_right = (frame.shape[1] - 200, 100)
+                    cv2.putText(frame,gesture_strs[0],text_pos_left,0,1.3,(0,0,255),3)
+                    cv2.putText(frame,gesture_strs[1],text_pos_right,0,1.3,(0,0,255),3)
+                else:
+                    text_pos_left = (0, 100)
+                    text_pos_right = (frame.shape[1] - 200, 100)
+                    cv2.putText(frame,gesture_strs[1],text_pos_left,0,1.3,(0,0,255),3)
+                    cv2.putText(frame,gesture_strs[0],text_pos_right,0,1.3,(0,0,255),3)
         cv2.imshow('MediaPipe Hands', frame)
         if cv2.waitKey(1) & 0xFF == 27:
             break
