@@ -11,11 +11,12 @@ import image2 from './components/images/8bf69b8ce619d69d9d31a4d9cdcb595d.jpeg'
 </script>
 
 <template>
-<button @click="back">返回主页</button>
+<div>
+<button @click="back" class="back-button">返回主页</button>
   <div v-if="elTestShow===0">
     <div class="common-layout">
       <el-container>
-        <el-header>基于手势的手部康复游戏</el-header>
+        <el-header class="title">基于手势的手部康复游戏</el-header>
         <el-main>
           <div class="image-button-wrapper">
             <div v-for="(item, index) in items" :key="index" class="image-button-container">
@@ -40,6 +41,7 @@ import image2 from './components/images/8bf69b8ce619d69d9d31a4d9cdcb595d.jpeg'
 <!--  <MeTest ></MeTest>-->
 <!--</div>-->
 <!--  <MeTest></MeTest>-->
+</div>
 </template>
 
 <script>
@@ -75,30 +77,6 @@ methods:{
 
 <style scoped>
 
-.common-layout {
-  display: flex;
-  justify-content: space-around;
-}
-
-.image-button-wrapper {
-  display: flex;
-  justify-content: space-around;
-}
-
-.image-button-container {
-  width: fit-content;
-}
-
-.image {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-}
-
-.button {
-  width: 100%;
-}
-
-
+@import './assets/styles.css';
 
 </style>
