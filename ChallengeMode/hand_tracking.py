@@ -1,6 +1,5 @@
 import cv2
 import mediapipe as mp
-
 from settings import *
 import numpy as np
 
