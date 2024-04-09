@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e93bc632-d371-417a-9d2d-f49825ed3323" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/NormalMode/game.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NormalMode/hand.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NormalMode/hand_tracking.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NormalMode/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/settings.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2epAAfN7qwzeqb3sA4BiRMngp1H" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "正在合并 main",
+    "last_opened_file_path": "D:/github/Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe/NormalMode",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode" />
+      <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode\Assets\scroll_bar" />
+      <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\ChallengeMode\Assets" />
+      <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\ChallengeMode" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode\Assets\scroll_bar" />
+      <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode\Assets" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="e93bc632-d371-417a-9d2d-f49825ed3323" name="更改" comment="" />
+      <created>1712591004374</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712591004374</updated>
+      <workItem from="1712591006258" duration="723000" />
+      <workItem from="1712626111605" duration="11020000" />
+      <workItem from="1712646732327" duration="1284000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$scroll_bar.coverage" NAME="scroll_bar 覆盖结果" MODIFIED="1712630793828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
+    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$main.coverage" NAME="main 覆盖结果" MODIFIED="1712639930116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
+  </component>
+</project>
