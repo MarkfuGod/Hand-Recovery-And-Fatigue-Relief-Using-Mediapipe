@@ -1,0 +1,3 @@
+- Please upload ur work in this directory
+- Please Provide certain description for your pull ruquests
+- Please check out the 'file conflicts' before u create new requests
