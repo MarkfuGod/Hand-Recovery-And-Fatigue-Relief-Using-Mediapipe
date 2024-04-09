@@ -4,6 +4,7 @@ import sys
 import os
 from settings import *
 from scroll_bar import *
+from game import *
 
 # from game import Game
 # from menu import Menu
@@ -14,7 +15,6 @@ pygame.display.set_caption(WINDOW_NAME)
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 
 mainClock = pygame.time.Clock()
-
 # Fonts ----------------------------------------------------------- #
 fps_font = pygame.font.SysFont("Silver.ttf", 22)
 
@@ -34,6 +34,9 @@ def user_events():
                 pygame.quit()
                 sys.exit()
 
+def update():
+    pygame.display.update()
+    mainClock.tick(FPS)
 
 scroll_bar = ScrollBar()
 card = Card()
@@ -43,9 +46,8 @@ while True:
     # 更新滚动条
     scroll_bar.update()
 
-    # 清屏
+    #update()
     SCREEN.fill((255, 255, 255))
-
     # 绘制滚动条
     scroll_bar.draw(SCREEN)
     card.draw(SCREEN,scroll_bar.scroll_rect)
