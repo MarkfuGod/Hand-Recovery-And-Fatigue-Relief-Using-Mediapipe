@@ -1,6 +1,5 @@
 <template>
-  <div>
-  </div>
+
 
   <section id="demos" class="invisible">
     <div class="image-container">
@@ -37,7 +36,7 @@
       </button>
       <div style="position: relative;">
         <video id="webcam" ref="video" autoplay playsinline></video>
-        <canvas class="output_canvas" id="output_canvas" width="1280" height="720" style="position: absolute; left: 0px; top: 0px;"></canvas>
+        <canvas ref="canvas" class="output_canvas" id="output_canvas" width="1280" height="720" style="position: absolute; left: 0px; top: 0px;"></canvas>
         <p id='gesture_output' class="output"></p>
       </div>
     </div>
@@ -70,6 +69,7 @@ export default {
       demosSection: null,
       lastVideoTime: -1,
       results: undefined,
+      imageContainers:null
     };
   },
 
@@ -92,6 +92,8 @@ export default {
       console.warn("getUserMedia() is not supported by your browser");
     }
 
+
+
     await this.$nextTick(() => {
       this.demosSection = document.getElementById("demos");
       this.createGestureRecognizer();
@@ -102,17 +104,29 @@ export default {
         console.warn("getUserMedia() is not supported by your browser");
       }
     });
+
+    // await this.createGestureRecognizer();
+    // this.imageContainers = document.getElementsByClassName("detectOnClick");
+    //
+    // for (let i = 0; i < this.imageContainers.length; i++) {
+    //   this.imageContainers[i].children[0].addEventListener("click", this.handleClick);
+    // }
+
+
   },
   methods: {
     async createGestureRecognizer() {
       const vision = await FilesetResolver.forVisionTasks(
+          // "src/assets/@mediapipe/tasks-vision/wasm"
           // "@mediapipe/tasks-vision/wasm"
           "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
       );
       this.gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
         baseOptions: {
           modelAssetPath:
-          // "",
+
+          // "vue_test1/node_modules/@mediapipe/tasks-vision/wasm",
+          // "src/assets/gesture_recognizer.task",
               "https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task",
           delegate: "GPU"
         },
@@ -120,6 +134,21 @@ export default {
       });
       this.demosSection.classList.remove("invisible");
     },
+
+
+    // async ff(){
+    //
+    //   this.imageContainers = document.getElementsByClassName("detectOnClick");
+    //
+    //   for (let i = 0; i < this.imageContainers.length; i++) {
+    //     this.imageContainers[i].children[0].addEventListener("click", this.handleClick);
+    //   }
+    //
+    // },
+
+
+
+
     async handleClick(event) {
       if (!this.gestureRecognizer) {
         alert("Please wait for gestureRecognizer to load");
@@ -203,6 +232,8 @@ export default {
         return;
       }
 
+
+
       if (this.webcamRunning === true) {
         this.webcamRunning = false;
         this.enableWebcamButton.innerText = "ENABLE PREDICTIONS";
@@ -222,6 +253,11 @@ export default {
         this.$refs.video.play();
         this.$refs.video.addEventListener("loadeddata", this.predictWebcam);
       });
+
+      // this.ff()
+      // this.ff()
+
+
     },
     async predictWebcam() {
       const webcamElement = this.$refs.video;
