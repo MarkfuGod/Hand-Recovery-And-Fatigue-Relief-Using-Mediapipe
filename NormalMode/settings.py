@@ -16,7 +16,7 @@ HANDGESTURES_SIZES = (50, 38)
 HANDGESTURE_SIZE_RANDOMIZE = (1,2) # for each new hand gesture, it will multiply the size with an random value beteewn X and Y
 BOMB_SIZES = (50, 50)
 BOMB_SIZE_RANDOMIZE = (1.2, 1.5)
-
+ENEMY_SIZES = (170, 200)
 # drawing
 DRAW_HITBOX = False # will draw all the hitbox
 
@@ -44,3 +44,4 @@ FONTS = {}
 FONTS["small"] = pygame.font.Font("Silver.ttf", 40)
 FONTS["medium"] = pygame.font.Font("Silver.ttf", 72)
 FONTS["big"] = pygame.font.Font("Silver.ttf", 120)
+LANE_COORDINATE = [(1305, 240), (1305, 473), (1305, 706)]

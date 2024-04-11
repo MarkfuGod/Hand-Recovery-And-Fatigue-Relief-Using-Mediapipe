@@ -2,6 +2,8 @@
 import pygame
 import sys
 import os
+
+from enemy import Enemy, EnemyHandle
 from settings import *
 from scroll_bar import *
 from game import *
@@ -22,7 +24,7 @@ fps_font = pygame.font.SysFont("Silver.ttf", 22)
 pygame.mixer.music.load("Assets/Sounds/background.mp3")
 pygame.mixer.music.set_volume(MUSIC_VOLUME)
 pygame.mixer.music.play(-1)
-
+game = Game(SCREEN)
 def user_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -39,18 +41,42 @@ def update():
     mainClock.tick(FPS)
 
 scroll_bar = ScrollBar()
-card = Card()
+
+
+
+lane = pygame.image.load("Assets/floor1.png")
+lane_rec_1 = lane.get_rect(topleft=(285, 240))
+lane_rec_2 = lane.get_rect(topleft=(285, 473))
+lane_rec_3 = lane.get_rect(topleft=(285, 706))
+enemy = Enemy()
+enemy_handle = EnemyHandle()
+# card=pygame.sprite.GroupSingle()
+# card.add(Card('card_golden'))
 # Loop ------------------------------------------------------------ #
 while True:
     user_events()
+
+    SCREEN.fill((255, 255, 255))
+
+    SCREEN.blit(lane, lane_rec_1)
+    SCREEN.blit(lane, lane_rec_2)
+    SCREEN.blit(lane, lane_rec_3)
+
+
+    #enemy_handle.update(SCREEN, card.sprite)
+    # enemy_handle.update(SCREEN, card.sprite)
+
+
+    game.update()
+
     # 更新滚动条
-    scroll_bar.update()
+    scroll_bar.update(SCREEN,enemy_handle)
 
     #update()
-    SCREEN.fill((255, 255, 255))
-    # 绘制滚动条
-    scroll_bar.draw(SCREEN)
-    card.draw(SCREEN,scroll_bar.scroll_rect)
+    # SCREEN.fill((255, 255, 255))
+
+
+
     # 更新屏幕显示
     pygame.display.flip()
     # FPS
