@@ -17,8 +17,8 @@ class HandTracking:
         self.hand_y = 0
         self.results = None
         self.hand_closed = False
-        # self.thumb_up = False
-        self.thumb_down = False
+        self.thumb_up = False
+        # self.thumb_down = False
         self.finger_up = False
         self.two_fingers_up = False
 
@@ -31,8 +31,8 @@ class HandTracking:
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
         self.hand_closed = False
-        # self.thumb_up = False
-        self.thumb_down = False
+        self.thumb_up = False
+        # self.thumb_down = False
         self.finger_up = False
         self.two_fingers_up = False
 
@@ -75,7 +75,7 @@ class HandTracking:
         return image
 
     def get_hand_center(self):
-        return (self.hand_x, self.hand_y)
+        return self.hand_x, self.hand_y
 
     def display_hand(self):
         cv2.imshow("image", self.image)
