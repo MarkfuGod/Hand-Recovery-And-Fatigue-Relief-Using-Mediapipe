@@ -1,6 +1,7 @@
 import random
+
+import collision
 import image
-from NormalMode import collision
 from collision import *
 
 from settings import *

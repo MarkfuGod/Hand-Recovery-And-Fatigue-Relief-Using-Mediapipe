@@ -5,16 +5,19 @@ from settings import *
 from hand import Hand
 from hand_tracking import HandTracking
 import cv2
+from scroll_bar import ScrollBar
 import ui
 
 
 class Game:
     def __init__(self, surface):
+        self.gestures = []
         self.game_start_time = time.time()
         self.score = 0
         self.hand = Hand()
         self.hand_tracking = HandTracking()
         self.surface = surface
+        self.scroll_bar=ScrollBar()
 
         # Load camera
         self.cap = cv2.VideoCapture(0)
@@ -22,6 +25,7 @@ class Game:
 
     def reset(self):  # reset all the needed variables
         self.hand_tracking = HandTracking()
+        self.scroll_bar = ScrollBar()
         self.hand = Hand()
         self.gestures = []
         self.score = 0
@@ -48,30 +52,25 @@ class Game:
         #              font=FONTS["medium"],
         #              shadow=True, shadow_color=(255, 255, 255))
 
-    def game_time_update(self):
-        self.time_left = max(round(GAME_DURATION - (time.time() - self.game_start_time), 1), 0)
 
     def update(self):
 
         self.load_camera()
         self.set_hand_position()
-        self.game_time_update()
-
         self.draw()
 
-        if self.time_left > 0:
-            (x, y) = self.hand_tracking.get_hand_center()
-            self.hand.rect.center = (x, y)
-            self.hand.left_click = self.hand_tracking.hand_closed
-            print("Hand closed", self.hand.left_click)
-            if self.hand.left_click:
-                self.hand.image = self.hand.image_smaller.copy()
-            else:
-                self.hand.image = self.hand.orig_image.copy()
+        (x, y) = self.hand_tracking.get_hand_center()
+        self.hand.rect.center = (x, y)
+        self.hand.left_click = self.hand_tracking.hand_closed
+        # print("thumb_up", self.hand.left_click)
+        # print("two_fingers_up", self.hand.left_click)
+        print("hand_closed", self.hand.left_click)
+        # print("finger_up", self.hand.left_click)
+        if self.hand.left_click:
+            self.hand.image = self.hand.image_smaller.copy()
+        else:
+            self.hand.image = self.hand.orig_image.copy()
 
-        else:  # when the game is over
-            if ui.button(self.surface, 540, "Continue", click_sound=self.sounds["slap"]):
-                return "menu"
 
         cv2.imshow("Frame", self.frame)
         cv2.waitKey(1)

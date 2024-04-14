@@ -26,13 +26,15 @@ class Collision:
             elif Card.get_card_type(ball) == 'card_ice' and not enemy.frozen:
                 enemy.frozen = True
                 ball.clear_image()
-            elif Card.get_card_type(ball) == 'card_ground' and ball.effected_by_card_ground and enemy.affected_by_card_ground:
+            elif Card.get_card_type(
+                    ball) == 'card_ground' and ball.effected_by_card_ground and enemy.affected_by_card_ground:
                 enemy.immune = True
 
                 enemy.move_right()
-                ball.effected_by_card_ground=False
-                enemy.affected_by_card_ground=False
-            elif Card.get_card_type(ball) == 'card_ground' and ball.effected_by_card_ground==False and enemy.affected_by_card_ground==False:
+                ball.effected_by_card_ground = False
+                enemy.affected_by_card_ground = False
+            elif Card.get_card_type(
+                    ball) == 'card_ground' and ball.effected_by_card_ground == False and enemy.affected_by_card_ground == False:
                 enemy.move_right()
         return False
 
@@ -41,7 +43,7 @@ class Collision:
         处理被魅惑的enemy向右走的逻辑，并检测碰撞
         :param enemy_group: Enemy的精灵组
         """
-        # TODO 需要Enemy类完善后再进行补充
+
         for enemy in enemy_group:
             if enemy.enchanted:
                 enemy.enemy_move_right()
@@ -51,20 +53,19 @@ class Collision:
                         enemy.remove_from_group()  # 移除发起碰撞的敌人
                         target_enemy.remove_from_group()  # 移除碰撞的目标敌人
 
-    def game_state(enemy_handle):
+    def game_state(self, enemy_handle):
         """
                 判断游戏状态
                 :param enemy_handle: Enemy的精灵组
                 """
-        # TODO all_enemies_eliminated()与enemy_list()方法待完善
         # 检查是否所有敌人都被消灭了
-        if enemy_handle.all_enemies_eliminated():
+        if len(enemy_handle.enemy_list) == 0:
             print("游戏胜利！")  # 测试用
-            return False
-
+            return True
+        # 检查是否过线
         for enemy in enemy_handle.enemy_list:
-            if enemy.rect.x <= 400:  # 假设游戏区域的最左边的x坐标为400
+            if enemy.rect.x <= 300:  # 假设游戏区域的最左边的x坐标为400
                 print("游戏失败！")  # 测试用
-                enemy_handle.clear_enemies()
+                # enemy_handle.clear_enemy()
                 return False
         return True

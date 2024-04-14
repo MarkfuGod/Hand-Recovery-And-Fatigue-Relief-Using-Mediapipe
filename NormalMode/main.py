@@ -3,6 +3,7 @@ import pygame
 import sys
 import os
 
+from NormalMode.lane import Lane
 from enemy import Enemy, EnemyHandle
 from settings import *
 from scroll_bar import *
@@ -25,6 +26,8 @@ pygame.mixer.music.load("Assets/Sounds/background.mp3")
 pygame.mixer.music.set_volume(MUSIC_VOLUME)
 pygame.mixer.music.play(-1)
 game = Game(SCREEN)
+
+
 def user_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -36,46 +39,39 @@ def user_events():
                 pygame.quit()
                 sys.exit()
 
+
 def update():
     pygame.display.update()
     mainClock.tick(FPS)
 
+
 scroll_bar = ScrollBar()
 
+lane = []
+lane.append(Lane(LANE_X, LANE_Y))
+lane.append(Lane(LANE_X, LANE_Y + LANE_VEL))
+lane.append(Lane(LANE_X, LANE_Y + LANE_VEL * 2))
 
-
-lane = pygame.image.load("Assets/floor1.png")
-lane_rec_1 = lane.get_rect(topleft=(285, 240))
-lane_rec_2 = lane.get_rect(topleft=(285, 473))
-lane_rec_3 = lane.get_rect(topleft=(285, 706))
 enemy = Enemy()
 enemy_handle = EnemyHandle()
-# card=pygame.sprite.GroupSingle()
-# card.add(Card('card_golden'))
+hand = Hand()
+
 # Loop ------------------------------------------------------------ #
 while True:
     user_events()
 
     SCREEN.fill((255, 255, 255))
 
-    SCREEN.blit(lane, lane_rec_1)
-    SCREEN.blit(lane, lane_rec_2)
-    SCREEN.blit(lane, lane_rec_3)
-
-
-    #enemy_handle.update(SCREEN, card.sprite)
-    # enemy_handle.update(SCREEN, card.sprite)
-
-
+    # draw lane
+    lane[0].draw_lane(SCREEN)
+    lane[1].draw_lane(SCREEN)
+    lane[2].draw_lane(SCREEN)
+    scroll_bar.update(SCREEN, enemy_handle, hand)
     game.update()
-
+    enemy_handle.update(SCREEN)
     # 更新滚动条
-    scroll_bar.update(SCREEN,enemy_handle)
 
-    #update()
-    # SCREEN.fill((255, 255, 255))
-
-
+    update()
 
     # 更新屏幕显示
     pygame.display.flip()

@@ -2,15 +2,16 @@ import pygame
 import random
 import image
 from card import Card
+import settings
 
 
 class ScrollBar(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         # 滚动条图片
-        self.scroll_image = image.load("Assets/scroll_bar/scroll_bar.png")
+        self.scroll_image = image.load("Assets/scroll_bar/scroll_bar.png", size =settings.SCROLL_BAR_SIZES)
         # 滚动条矩形
-        self.scroll_rect = self.scroll_image.get_rect(center=(900, 120))
+        self.scroll_rect = self.scroll_image.get_rect(center=(600, 80))
         # 传送带中种类卡片的数量
         self.fire_num = 0;
         self.ground_num = 0;
@@ -54,7 +55,7 @@ class ScrollBar(pygame.sprite.Sprite):
             # 在最后一张卡片的右侧随机距离处放置新卡片，以避免重叠
             card.card_rect.x = max_right + random.randint(50, 150)
 
-    def update(self, surface,enemy_handle):
+    def update(self, surface,enemy_handle,hand):
         """
         更新滚动条，包括尝试添加新卡片和处理卡片之间的碰撞。
         :param 无
@@ -63,7 +64,7 @@ class ScrollBar(pygame.sprite.Sprite):
         self.try_add_card()
         self.draw(surface)
         for card in self.card_list:
-            card.update(self.scroll_rect, surface,enemy_handle)
+            card.update(self.scroll_rect, surface,enemy_handle,hand)
             for other_card in self.card_list:
                 if card != other_card and card.card_rect.colliderect(other_card.card_rect) and not other_card.moving:
                     card.moving = False

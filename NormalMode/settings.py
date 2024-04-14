@@ -3,20 +3,26 @@ import pygame
 WINDOW_NAME = "HandGesture Master"
 GAME_TITLE = WINDOW_NAME
 
-SCREEN_WIDTH, SCREEN_HEIGHT = 1800, 1050
+SCREEN_WIDTH, SCREEN_HEIGHT = 1200, 700
 
-FPS = 90
-DRAW_FPS = False
+FPS = 60
+DRAW_FPS = True
 
 # sizes
 BUTTONS_SIZES = (240, 90)
-HAND_SIZE = 200
+HAND_SIZE = 150
 HAND_HITBOX_SIZE = (60, 80)
 HANDGESTURES_SIZES = (50, 38)
 HANDGESTURE_SIZE_RANDOMIZE = (1,2) # for each new hand gesture, it will multiply the size with an random value beteewn X and Y
 BOMB_SIZES = (50, 50)
 BOMB_SIZE_RANDOMIZE = (1.2, 1.5)
-ENEMY_SIZES = (170, 200)
+ENEMY_SIZES = (113, 133)
+SCROLL_BAR_SIZES = (1000,133)
+CARD_SIZES = (100,120)
+HEXAGON_SIZES = (200,153)
+LANE_SIZES = (800,160)
+
+
 # drawing
 DRAW_HITBOX = False # will draw all the hitbox
 
@@ -45,3 +51,9 @@ FONTS["small"] = pygame.font.Font("Silver.ttf", 40)
 FONTS["medium"] = pygame.font.Font("Silver.ttf", 72)
 FONTS["big"] = pygame.font.Font("Silver.ttf", 120)
 LANE_COORDINATE = [(1305, 240), (1305, 473), (1305, 706)]
+
+#lane
+LANE_VEL = 155
+HEXAGON_INDEX = 4
+LANE_X = 192
+LANE_Y = 160

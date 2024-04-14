@@ -1,4 +1,3 @@
-import pygame
 import image
 from settings import *
 from hand_tracking import HandTracking
@@ -26,24 +25,14 @@ class Hand:
 
     def draw(self, surface):
         image.draw(surface, self.image, self.rect.center, pos_mode="center")
-
         if DRAW_HITBOX:
             self.draw_hitbox(surface)
 
     def on_gesture(self, gestures):  # return a list with all gestures that collide with the hand hitbox
         return [gesture for gesture in gestures if self.rect.colliderect(gesture.rect)]
 
-    def kill_gestures(self, gestures, score,
-                      sounds):  # will kill the gestures that collide with the hand when the left mouse button is pressed
-        if self.left_click:  # if left click
-            for gesture in self.on_gesture(gestures):
-                gesture_score = gesture.kill(gestures)
-                score += gesture_score
-                sounds["slap"].play()
-                if gesture_score < 0:
-                    sounds["screaming"].play()
+    def is_hand_closed(self):
+        if self.left_click:
+            return True
         else:
-            self.left_click = False
-        return score
-
-
+            return False

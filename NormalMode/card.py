@@ -1,31 +1,34 @@
 import pygame
 import image
+from NormalMode.settings import CARD_SIZES
+from hand import Hand
+from hand_tracking import HandTracking
 
 
 class Card(pygame.sprite.Sprite):
     def __init__(self, card_type):
         super().__init__()
         # 加载图片
-        self.card_fire = image.load("Assets/scroll_bar/card_fire.png")
-        self.card_golden = image.load("Assets/scroll_bar/card_golden.png")
-        self.card_ice = image.load("Assets/scroll_bar/card_ice.png")
-        self.card_ground = image.load("Assets/scroll_bar/card_ground.png")
+        self.card_fire = image.load("Assets/scroll_bar/card_fire.png", size=CARD_SIZES)
+        self.card_golden = image.load("Assets/scroll_bar/card_golden.png", size=CARD_SIZES)
+        self.card_ice = image.load("Assets/scroll_bar/card_ice.png", size=CARD_SIZES)
+        self.card_ground = image.load("Assets/scroll_bar/card_ground.png", size=CARD_SIZES)
         # 卡片元素
         self.type = card_type
         if self.type == "card_ice":
             # 设置默认图像
             self.image = self.card_ice
             # 设置默认位置
-            self.card_rect = self.image.get_rect(topleft=(1800, 30))
+            self.card_rect = self.image.get_rect(topleft=(1200, 20))
         if self.type == "card_fire":
             self.image = self.card_fire
-            self.card_rect = self.image.get_rect(topleft=(1800, 30))
+            self.card_rect = self.image.get_rect(topleft=(1200, 20))
         if self.type == "card_golden":
             self.image = self.card_golden
-            self.card_rect = self.image.get_rect(topleft=(1800, 30))
+            self.card_rect = self.image.get_rect(topleft=(1200, 20))
         if self.type == "card_ground":
             self.image = self.card_ground
-            self.card_rect = self.image.get_rect(topleft=(1800, 30))
+            self.card_rect = self.image.get_rect(topleft=(1200, 20))
         # 卡片移动速度
         self.card_speed = 2
         self.rect = self.card_rect
@@ -35,11 +38,12 @@ class Card(pygame.sprite.Sprite):
         self.released = False
         self.effected_by_card_ground = True
 
-    def update(self, scroll_rect,surface,enemy_handle):
-        # 如果卡片没有被释放
+    def update(self, scroll_rect, surface, enemy_handle, hand):
+        # 如果卡片没有被
         if not self.released:
-            self.draw(surface,scroll_rect)
-
+            # handtracking.card_follow_hand(self)
+            self.draw(surface, scroll_rect)
+            self.follow_hand(hand)
             if self.moving:
                 self.card_rect.x -= self.card_speed
                 if self.card_rect.x < scroll_rect.left:  # 如果卡片移动到scroll_rect的左侧
@@ -47,10 +51,11 @@ class Card(pygame.sprite.Sprite):
                     self.moving = False
         else:
             enemy_handle.enemy_enchanted_handle(self)
+            # handtracking.card_follow_hand(self)
+            self.follow_hand(hand)
             # 被释放那就从传送带中删除
-            self.draw(surface,scroll_rect)
+            self.draw(surface, scroll_rect)
             self.move_right()
-            pass
 
     def draw(self, surface, scroll_rect):
         if not self.released:
@@ -72,3 +77,9 @@ class Card(pygame.sprite.Sprite):
     def clear_image(self):
         # 假设image_to_clear是一个pygame.Surface对象
         self.kill()  # 使用透明颜色填充图像
+
+    def follow_hand(self, hand):
+        if hand.is_hand_closed():
+            if self.rect.collidepoint(hand.rect):  # 如果手是闭合的
+                self.card_rect.center = hand.rect.center  # 更新卡片的位置为手的位置
+                self.moving = False
