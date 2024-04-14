@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e93bc632-d371-417a-9d2d-f49825ed3323" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/enemy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/scroll_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/scroll_bar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/6.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NormalMode/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/github/Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe/NormalMode",
+    "last_opened_file_path": "D:/github/Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe/NormalMode/Assets/Enemy",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -60,11 +62,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode\Assets\Enemy" />
       <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode" />
       <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode\Assets" />
       <recent name="C:\Users\Summer\Desktop\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe-main\NormalMode" />
       <recent name="D:\wuyong\双创\v1.2\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe-main\NormalMode" />
-      <recent name="D:\wuyong\双创\v1.2\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe-main\NormalMode\Assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode\Assets\scroll_bar" />
@@ -255,7 +257,7 @@
       <workItem from="1713098773621" duration="4007000" />
       <workItem from="1713103313424" duration="1842000" />
       <workItem from="1713106124798" duration="354000" />
-      <workItem from="1713107342536" duration="375000" />
+      <workItem from="1713107342536" duration="1141000" />
     </task>
     <servers />
   </component>
@@ -265,7 +267,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$scroll_bar.coverage" NAME="scroll_bar 覆盖结果" MODIFIED="1712630793828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$collision.coverage" NAME="collision 覆盖结果" MODIFIED="1713095533918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
-    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$main.coverage" NAME="main 覆盖结果" MODIFIED="1713107662210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
+    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$main.coverage" NAME="main 覆盖结果" MODIFIED="1713108434925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe_main$main.coverage" NAME="main 覆盖结果" MODIFIED="1712835180960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$card.coverage" NAME="card 覆盖结果" MODIFIED="1713095878247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe_main$card.coverage" NAME="card 覆盖结果" MODIFIED="1712819774190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />

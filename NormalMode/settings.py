@@ -16,7 +16,7 @@ HANDGESTURES_SIZES = (50, 38)
 HANDGESTURE_SIZE_RANDOMIZE = (1,2) # for each new hand gesture, it will multiply the size with an random value beteewn X and Y
 BOMB_SIZES = (50, 50)
 BOMB_SIZE_RANDOMIZE = (1.2, 1.5)
-ENEMY_SIZES = (113, 133)
+ENEMY_SIZES = (170, 200)
 SCROLL_BAR_SIZES = (1000,133)
 CARD_SIZES = (100,120)
 HEXAGON_SIZES = (200,153)
@@ -50,7 +50,7 @@ FONTS = {}
 FONTS["small"] = pygame.font.Font("Silver.ttf", 40)
 FONTS["medium"] = pygame.font.Font("Silver.ttf", 72)
 FONTS["big"] = pygame.font.Font("Silver.ttf", 120)
-LANE_COORDINATE = [(870, 175), (870, 330), (870, 485)]
+LANE_COORDINATE = [(870, 155), (870, 310), (870, 465)]
 
 #lane
 LANE_VEL = 155
