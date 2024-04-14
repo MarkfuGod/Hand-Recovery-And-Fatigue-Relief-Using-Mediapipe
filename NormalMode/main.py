@@ -54,7 +54,6 @@ lane.append(Lane(LANE_X, LANE_Y + LANE_VEL * 2))
 
 enemy = Enemy()
 enemy_handle = EnemyHandle()
-hand = Hand()
 
 # Loop ------------------------------------------------------------ #
 while True:
@@ -66,7 +65,7 @@ while True:
     lane[0].draw_lane(SCREEN)
     lane[1].draw_lane(SCREEN)
     lane[2].draw_lane(SCREEN)
-    scroll_bar.update(SCREEN, enemy_handle, hand)
+    scroll_bar.update(SCREEN, enemy_handle)
     game.update()
     enemy_handle.update(SCREEN)
     # 更新滚动条

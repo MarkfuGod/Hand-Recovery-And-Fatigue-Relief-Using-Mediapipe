@@ -20,7 +20,7 @@ ENEMY_SIZES = (113, 133)
 SCROLL_BAR_SIZES = (1000,133)
 CARD_SIZES = (100,120)
 HEXAGON_SIZES = (200,153)
-LANE_SIZES = (800,160)
+LANE_SIZES = (1000,160)
 
 
 # drawing
@@ -50,10 +50,10 @@ FONTS = {}
 FONTS["small"] = pygame.font.Font("Silver.ttf", 40)
 FONTS["medium"] = pygame.font.Font("Silver.ttf", 72)
 FONTS["big"] = pygame.font.Font("Silver.ttf", 120)
-LANE_COORDINATE = [(1305, 240), (1305, 473), (1305, 706)]
+LANE_COORDINATE = [(870, 175), (870, 330), (870, 485)]
 
 #lane
 LANE_VEL = 155
 HEXAGON_INDEX = 4
-LANE_X = 192
+LANE_X = 100
 LANE_Y = 160

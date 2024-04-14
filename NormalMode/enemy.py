@@ -7,7 +7,6 @@ from collision import *
 from settings import *
 
 '''
-ENEMY_SIZES 敌人的尺寸 170 * 200
 LANE_COORDINATE 暂时使用 三条道路的坐标
 ANIMATION_SPEED 动画的速度
 '''
@@ -47,7 +46,7 @@ class Enemy(pygame.sprite.Sprite):
         用于判断敌人是否过线，过线则敌人消失，用于后期判断玩家是否失败
         :return:
         """
-        if self.rect.x <= 300:
+        if self.rect.x <= 100:
             self.state = False
 
     def enemy_move_left(self):
