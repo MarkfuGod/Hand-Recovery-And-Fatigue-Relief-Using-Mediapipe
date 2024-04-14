@@ -76,9 +76,10 @@ while True:
     lane[0].draw_lane(SCREEN)
     lane[1].draw_lane(SCREEN)
     lane[2].draw_lane(SCREEN)
+
+    scroll_bar.update(SCREEN, enemy_handle,game)
     enemy_handle.update(SCREEN)
-    scroll_bar.update(SCREEN, enemy_handle, hand,game)
-    # game.update()
+
 
     # 更新滚动条
     # drag.update(hand)

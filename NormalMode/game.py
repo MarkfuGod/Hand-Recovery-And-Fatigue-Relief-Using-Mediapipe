@@ -23,9 +23,8 @@ class Game:
 
         # Load camera
         self.cap = cv2.VideoCapture(0)
-
         #TODO 新增
-        self.drag=Drag()
+        self.drag = Drag()
     def reset(self):  # reset all the needed variables
         self.hand_tracking = HandTracking()
         self.scroll_bar = ScrollBar()
@@ -64,12 +63,16 @@ class Game:
 
         (x, y) = self.hand_tracking.get_hand_center()
         self.hand.rect.center = (x, y)
-        self.hand.left_click = self.hand_tracking.hand_closed
 
+        self.hand.left_click = (
+                    self.hand_tracking.hand_closed is True or self.hand_tracking.thumb_up is True or self.hand_tracking.two_fingers_up is True or self.hand_tracking.finger_up is True)
+        # print("thumb_up", self.hand.left_click)
+        # print("two_fingers_up", self.hand.left_click)
+        # print("hand_closed", self.hand.left_click)
+        # print("finger_up", self.hand.left_click)
         #TODO 新增
         self.drag.update(self.hand,card_list)
 
-        print("Hand closed", self.hand.left_click)
         if self.hand.left_click:
             self.hand.image = self.hand.image_smaller.copy()
         else:
