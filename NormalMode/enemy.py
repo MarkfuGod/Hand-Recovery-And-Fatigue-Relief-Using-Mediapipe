@@ -41,6 +41,7 @@ class Enemy(pygame.sprite.Sprite):
         self.immune = False  # 受到土球攻击向右走
 
         self.affected_by_card_ground = True
+
     def cross_line(self):
         """
         用于判断敌人是否过线，过线则敌人消失，用于后期判断玩家是否失败
@@ -173,7 +174,6 @@ class EnemyHandle(pygame.sprite.Sprite):
     #     collision.Collision.enemy_turned(self.enemy_list)
     #     for enemy in self.enemy_list:
     #         self.remove_enemy(enemy)
-
 
     def update(self, surface):
         """

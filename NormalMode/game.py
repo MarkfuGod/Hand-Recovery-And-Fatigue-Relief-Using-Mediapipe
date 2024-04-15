@@ -2,8 +2,8 @@ import pygame
 import time
 import random
 
-from NormalMode.ball import Ball
-from NormalMode.drag import Drag
+from ball import Ball
+from drag import Drag
 from settings import *
 from hand import Hand
 from hand_tracking import HandTracking
@@ -14,6 +14,7 @@ import ui
 
 class Game:
     def __init__(self, surface):
+        self.is_draw = False
         self.gestures = []
         self.game_start_time = time.time()
         self.score = 0
@@ -24,8 +25,9 @@ class Game:
 
         # Load camera
         self.cap = cv2.VideoCapture(0)
-        #TODO 新增
+        # TODO 新增
         self.drag = Drag()
+
     def reset(self):  # reset all the needed variables
         self.hand_tracking = HandTracking()
         self.scroll_bar = ScrollBar()
@@ -55,7 +57,7 @@ class Game:
         #              font=FONTS["medium"],
         #              shadow=True, shadow_color=(255, 255, 255))
 
-    def update(self,card_list, ball, surface):
+    def update(self, card_list, ball_handle, surface, lane):
 
         self.load_camera()
         self.set_hand_position()
@@ -64,18 +66,16 @@ class Game:
         (x, y) = self.hand_tracking.get_hand_center()
         self.hand.rect.center = (x, y)
         self.hand.left_click = (
-                    self.hand_tracking.hand_closed is True or self.hand_tracking.thumb_up is True or self.hand_tracking.two_fingers_up is True or self.hand_tracking.finger_up is True)
+                self.hand_tracking.hand_closed is True or self.hand_tracking.thumb_up is True or self.hand_tracking.two_fingers_up is True or self.hand_tracking.finger_up is True)
         # print("thumb_up", self.hand.left_click)
         # print("two_fingers_up", self.hand.left_click)
         # print("hand_closed", self.hand.left_click)
         # print("finger_up", self.hand.left_click)
         # TODO 新增
-        self.which_card, self.is_draw = self.drag.update(self.hand, card_list, ball, surface)
+        self.which_card, self.is_draw = self.drag.update(self.hand, card_list, ball_handle, surface, lane)
         print("is_draw" + str(self.is_draw))
-        if self.is_draw:
-            ball.add(Ball(self.which_card))
-            ball.draw(surface)
-        ball.update()
+        # if self.is_draw:
+        ball_handle.update(surface)
 
         if self.hand.left_click:
             self.hand.image = self.hand.image_smaller.copy()

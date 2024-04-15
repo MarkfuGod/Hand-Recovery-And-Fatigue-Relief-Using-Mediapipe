@@ -1,8 +1,8 @@
 import pygame
 
-from NormalMode.hexagon import Hexagon
+from hexagon import Hexagon
 from image import load
-from NormalMode.settings import LANE_VEL, LANE_SIZES
+from settings import LANE_VEL, LANE_SIZES
 
 
 class Lane:

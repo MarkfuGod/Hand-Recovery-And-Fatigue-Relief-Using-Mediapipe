@@ -3,11 +3,12 @@ import pygame
 import sys
 import os
 
-from NormalMode.lane import Lane
+from lane import Lane
 from enemy import Enemy, EnemyHandle
 from settings import *
 from scroll_bar import *
 from game import *
+from temp_hand_game.NormalMode.ball import BallHandle
 
 # from game import Game
 # from menu import Menu
@@ -52,12 +53,11 @@ lane.append(Lane(LANE_X, LANE_Y))
 lane.append(Lane(LANE_X, LANE_Y + LANE_VEL))
 lane.append(Lane(LANE_X, LANE_Y + LANE_VEL * 2))
 
-#TODO 新增
-ball=pygame.sprite.GroupSingle()
+# TODO 新增
+ball_handle = BallHandle()
 hand = Hand()
 
 
-enemy = Enemy()
 enemy_handle = EnemyHandle()
 
 # Loop ------------------------------------------------------------ #
@@ -70,13 +70,11 @@ while True:
     lane[0].draw_lane(SCREEN)
     lane[1].draw_lane(SCREEN)
     lane[2].draw_lane(SCREEN)
-    # scroll_bar.update(SCREEN, enemy_handle,game)
-
     # game.update()
     enemy_handle.update(SCREEN)
-    scroll_bar.update(SCREEN, enemy_handle, hand, game, ball)
+    scroll_bar.update(SCREEN, enemy_handle, hand, game, ball_handle, lane[2])
+    # game.update(scroll_bar.card_list, ball, SCREEN)
     # 更新滚动条
-
     update()
 
     # 更新屏幕显示

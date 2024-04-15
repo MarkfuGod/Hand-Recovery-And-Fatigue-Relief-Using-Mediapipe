@@ -1,8 +1,9 @@
 import pygame
 import image
-from NormalMode.settings import CARD_SIZES
+from settings import CARD_SIZES
 from hand import Hand
 from hand_tracking import HandTracking
+from temp_hand_game.NormalMode.ball import Ball
 
 
 class Card(pygame.sprite.Sprite):
@@ -39,7 +40,8 @@ class Card(pygame.sprite.Sprite):
             self.card_rect = self.image.get_rect(topleft=(1200, 20))
             self.gestureStatus = self.hand_tracking.finger_up
         # 卡片移动速度
-        self.card_speed = 2
+        # FIXME 暂改原为2
+        self.card_speed = 10
         self.rect = self.card_rect
         # 标记卡片是否应该继续移动
         self.moving = True
@@ -49,6 +51,9 @@ class Card(pygame.sprite.Sprite):
         # TODO 新增
         self.selected = True
         self.move = False
+        self.ball = Ball(self.type)
+        self.has_used = False
+
     def update(self, scroll_rect, surface, enemy_handle):
         # 如果卡片没有被
         if not self.released:
