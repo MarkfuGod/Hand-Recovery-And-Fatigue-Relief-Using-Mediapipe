@@ -1,5 +1,5 @@
-from NormalMode.image import load
-from NormalMode.settings import *
+from image import load
+from settings import *
 
 
 class Hexagon:
