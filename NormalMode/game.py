@@ -1,8 +1,6 @@
 import pygame
 import time
 import random
-
-from NormalMode.drag import Drag
 from settings import *
 from hand import Hand
 from hand_tracking import HandTracking
@@ -19,7 +17,7 @@ class Game:
         self.hand = Hand()
         self.hand_tracking = HandTracking()
         self.surface = surface
-        self.scroll_bar=ScrollBar()
+        self.scroll_bar = ScrollBar()
 
         # Load camera
         self.cap = cv2.VideoCapture(0)
@@ -54,7 +52,6 @@ class Game:
         #              font=FONTS["medium"],
         #              shadow=True, shadow_color=(255, 255, 255))
 
-
     def update(self,card_list):
 
         self.load_camera()
@@ -63,7 +60,6 @@ class Game:
 
         (x, y) = self.hand_tracking.get_hand_center()
         self.hand.rect.center = (x, y)
-
         self.hand.left_click = (
                     self.hand_tracking.hand_closed is True or self.hand_tracking.thumb_up is True or self.hand_tracking.two_fingers_up is True or self.hand_tracking.finger_up is True)
         # print("thumb_up", self.hand.left_click)
@@ -77,7 +73,6 @@ class Game:
             self.hand.image = self.hand.image_smaller.copy()
         else:
             self.hand.image = self.hand.orig_image.copy()
-
 
         cv2.imshow("Frame", self.frame)
         cv2.waitKey(1)
