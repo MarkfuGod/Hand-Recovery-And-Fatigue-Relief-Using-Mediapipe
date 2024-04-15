@@ -46,7 +46,9 @@ class Card(pygame.sprite.Sprite):
         # 标记卡片是否被释放
         self.released = False
         self.effected_by_card_ground = True
-
+        # TODO 新增
+        self.selected = True
+        self.move = False
     def update(self, scroll_rect, surface, enemy_handle):
         # 如果卡片没有被
         if not self.released:

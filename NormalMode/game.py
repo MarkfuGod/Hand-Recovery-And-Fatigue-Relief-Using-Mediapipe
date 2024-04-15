@@ -1,6 +1,8 @@
 import pygame
 import time
 import random
+
+from NormalMode.drag import Drag
 from settings import *
 from hand import Hand
 from hand_tracking import HandTracking
