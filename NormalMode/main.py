@@ -3,7 +3,6 @@ import pygame
 import sys
 import os
 
-from NormalMode.drag import Drag
 from NormalMode.lane import Lane
 from enemy import Enemy, EnemyHandle
 from settings import *
@@ -46,7 +45,7 @@ def update():
     mainClock.tick(FPS)
 
 
-
+scroll_bar = ScrollBar()
 
 lane = []
 lane.append(Lane(LANE_X, LANE_Y))
@@ -55,17 +54,7 @@ lane.append(Lane(LANE_X, LANE_Y + LANE_VEL * 2))
 
 enemy = Enemy()
 enemy_handle = EnemyHandle()
-hand = Hand()
-drag = Drag()
-scroll_bar = ScrollBar()
-# enemy = pygame.sprite.Group()
-# enemy.add(Enemy())
-# enemy_handle = pygame.sprite.Group()
-# enemy_handle.add(EnemyHandle())
-# hand = Hand()
-# drag = Drag()
-# scroll_bar = pygame.sprite.Group()
-# scroll_bar.add(ScrollBar())
+
 # Loop ------------------------------------------------------------ #
 while True:
     user_events()
@@ -76,13 +65,10 @@ while True:
     lane[0].draw_lane(SCREEN)
     lane[1].draw_lane(SCREEN)
     lane[2].draw_lane(SCREEN)
-
     scroll_bar.update(SCREEN, enemy_handle,game)
+    game.update()
     enemy_handle.update(SCREEN)
-
-
     # 更新滚动条
-    # drag.update(hand)
 
     update()
 
