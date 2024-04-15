@@ -30,12 +30,35 @@ class Drag:
             # 如果手不是闭合状态，释放所有正在移动的卡片
             for card in card_list:
                 if card.move:
-                    self.which_card = card.get_card_type()
-                    self.is_draw = True
-                    # ball.draw(surface)
-                    card.move = False  # 标记卡片为非移动状态
-                # TODO 此处应有两个条件，1.card没有被使用 2.card和六边形碰撞
-                if not card.has_used:
-                    ball_handle.ball_list.add(card.ball)
-                    card.has_used = True
+                    # 检查卡片是否与(200, 155)点碰撞
+                    if card.rect.collidepoint((230, 230)):
+                        self.which_card = card.get_card_type()
+                        self.is_draw = True
+                        card.move = False  # 标记卡片为非移动状态
+                        card.kill()
+                        # 设置ball的起始位置为(200, 155)
+                        if not card.has_used:
+                            card.ball.rect.center = (230, 230)
+                            ball_handle.ball_list.add(card.ball)
+                            card.has_used = True
+                    elif card.rect.collidepoint((230, 400)):
+                        self.which_card = card.get_card_type()
+                        self.is_draw = True
+                        card.move = False  # 标记卡片为非移动状态
+                        card.kill()
+                        # 设置ball的起始位置为(200, 155)
+                        if not card.has_used:
+                            card.ball.rect.center = (230, 400)
+                            ball_handle.ball_list.add(card.ball)
+                            card.has_used = True
+                    elif card.rect.collidepoint((230, 550)):
+                        self.which_card = card.get_card_type()
+                        self.is_draw = True
+                        card.move = False  # 标记卡片为非移动状态
+                        card.kill()
+                        # 设置ball的起始位置为(200, 155)
+                        if not card.has_used:
+                            card.ball.rect.center = (230, 550)
+                            ball_handle.ball_list.add(card.ball)
+                            card.has_used = True
         return self.which_card, self.is_draw

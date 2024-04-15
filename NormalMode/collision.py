@@ -1,6 +1,6 @@
 import pygame
 
-from card import Card
+from ball import Ball
 
 
 class Collision:
@@ -13,27 +13,27 @@ class Collision:
         """
         collided_enemies = pygame.sprite.spritecollide(ball, enemy_group, False)
         for enemy in collided_enemies:
-            if Card.get_card_type(ball) == 'card_golden' and not enemy.collided and not enemy.enchanted:
+            if Ball.get_card_type(ball) == 'card_golden' and not enemy.collided and not enemy.enchanted:
                 enemy.enchanted = True
                 ball.clear_image()
                 if enemy.frozen:  # 如果enemy被冻结
                     enemy.frozen = False  # 解冻enemy
-            elif Card.get_card_type(ball) == 'card_fire':
+            elif Ball.get_card_type(ball) == 'card_fire':
                 enemy.kill()  # 直接杀死enemy
                 ball.clear_image()
                 if enemy.frozen:  # 如果enemy被冻结
                     enemy.frozen = False  # 解冻enemy
-            elif Card.get_card_type(ball) == 'card_ice' and not enemy.frozen:
+            elif Ball.get_card_type(ball) == 'card_ice' and not enemy.frozen:
                 enemy.frozen = True
                 ball.clear_image()
-            elif Card.get_card_type(
+            elif Ball.get_card_type(
                     ball) == 'card_ground' and ball.effected_by_card_ground and enemy.affected_by_card_ground:
                 enemy.immune = True
 
                 enemy.move_right()
                 ball.effected_by_card_ground = False
                 enemy.affected_by_card_ground = False
-            elif Card.get_card_type(
+            elif Ball.get_card_type(
                     ball) == 'card_ground' and ball.effected_by_card_ground == False and enemy.affected_by_card_ground == False:
                 enemy.move_right()
         return False

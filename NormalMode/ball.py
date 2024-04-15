@@ -13,7 +13,7 @@ class Ball(pygame.sprite.Sprite):
         self.card_ice = image.load("Assets/ball/ice.png")
         self.card_ground = image.load("Assets/ball/ground.png")
         self.type = card_type  # 添加type属性
-
+        self.effected_by_card_ground = True
         if self.type == "card_ice":
             self.image = self.card_ice  # 设置默认图像
             self.rect = self.image.get_rect(topleft=(320, 240))  # 设置默认位置

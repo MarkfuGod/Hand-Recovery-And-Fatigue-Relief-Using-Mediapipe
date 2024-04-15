@@ -69,7 +69,7 @@ class ScrollBar(pygame.sprite.Sprite):
                 if card != other_card and card.card_rect.colliderect(other_card.card_rect) and not other_card.moving:
                     card.moving = False
         # game.update(self.card_list)
-        game.update(self.card_list, ball_handle, surface, lane)
+        game.update(self.card_list, ball_handle, surface, lane,enemy_handle)
 
     # def draw(self, surface):
     #     """

@@ -3,7 +3,7 @@ import image
 from settings import CARD_SIZES
 from hand import Hand
 from hand_tracking import HandTracking
-from temp_hand_game.NormalMode.ball import Ball
+from ball import Ball
 
 
 class Card(pygame.sprite.Sprite):

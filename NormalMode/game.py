@@ -2,6 +2,7 @@ import pygame
 import time
 import random
 
+from NormalMode.collision import Collision
 from ball import Ball
 from drag import Drag
 from settings import *
@@ -27,6 +28,7 @@ class Game:
         self.cap = cv2.VideoCapture(0)
         # TODO 新增
         self.drag = Drag()
+        self.collision=Collision()
 
     def reset(self):  # reset all the needed variables
         self.hand_tracking = HandTracking()
@@ -57,7 +59,7 @@ class Game:
         #              font=FONTS["medium"],
         #              shadow=True, shadow_color=(255, 255, 255))
 
-    def update(self, card_list, ball_handle, surface, lane):
+    def update(self, card_list, ball_handle, surface, lane,enemy_handle):
 
         self.load_camera()
         self.set_hand_position()
@@ -76,6 +78,8 @@ class Game:
         print("is_draw" + str(self.is_draw))
         # if self.is_draw:
         ball_handle.update(surface)
+        for ball in ball_handle.ball_list:
+            self.collision.collide_with_element(ball,enemy_handle.enemy_list)
 
         if self.hand.left_click:
             self.hand.image = self.hand.image_smaller.copy()

@@ -8,7 +8,7 @@ from enemy import Enemy, EnemyHandle
 from settings import *
 from scroll_bar import *
 from game import *
-from temp_hand_game.NormalMode.ball import BallHandle
+from ball import BallHandle
 
 # from game import Game
 # from menu import Menu
@@ -59,7 +59,8 @@ hand = Hand()
 
 
 enemy_handle = EnemyHandle()
-
+# lane1 = pygame.image.load("Assets/ball/ice.png")
+# lane_rec_1 = lane1.get_rect(topleft=(230, 550))
 # Loop ------------------------------------------------------------ #
 while True:
     user_events()
@@ -70,6 +71,7 @@ while True:
     lane[0].draw_lane(SCREEN)
     lane[1].draw_lane(SCREEN)
     lane[2].draw_lane(SCREEN)
+    # SCREEN.blit(lane1, lane_rec_1)
     # game.update()
     enemy_handle.update(SCREEN)
     scroll_bar.update(SCREEN, enemy_handle, hand, game, ball_handle, lane[2])
