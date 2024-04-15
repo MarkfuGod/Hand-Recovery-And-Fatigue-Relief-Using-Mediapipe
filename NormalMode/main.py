@@ -3,11 +3,12 @@ import pygame
 import sys
 import os
 
-from NormalMode.lane import Lane
+from lane import Lane
 from enemy import Enemy, EnemyHandle
 from settings import *
 from scroll_bar import *
 from game import *
+from temp_hand_game.NormalMode.ball import BallHandle
 
 # Setup pygame/window --------------------------------------------- #
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (100, 32)  # windows position
@@ -56,6 +57,7 @@ def draw(surface):
     lane[2].draw_lane(surface)
 
 
+
 # statement -------------------------------------------------------- #
 # scroll_bar
 scroll_bar = ScrollBar()
@@ -70,6 +72,8 @@ hand = Hand()
 # enemy
 enemy = Enemy()
 # enemy handle
+
+
 enemy_handle = EnemyHandle()
 # ball TODO 新增
 ball = pygame.sprite.GroupSingle()
@@ -79,7 +83,9 @@ while True:
     user_events()
     SCREEN.fill((255, 255, 255))
 
+
     draw(SCREEN)
+
     update()
     # 更新屏幕显示
     pygame.display.flip()
