@@ -52,6 +52,11 @@ lane.append(Lane(LANE_X, LANE_Y))
 lane.append(Lane(LANE_X, LANE_Y + LANE_VEL))
 lane.append(Lane(LANE_X, LANE_Y + LANE_VEL * 2))
 
+#TODO 新增
+ball=pygame.sprite.GroupSingle()
+hand = Hand()
+
+
 enemy = Enemy()
 enemy_handle = EnemyHandle()
 
@@ -65,9 +70,11 @@ while True:
     lane[0].draw_lane(SCREEN)
     lane[1].draw_lane(SCREEN)
     lane[2].draw_lane(SCREEN)
-    scroll_bar.update(SCREEN, enemy_handle,game)
+    # scroll_bar.update(SCREEN, enemy_handle,game)
+
     # game.update()
     enemy_handle.update(SCREEN)
+    scroll_bar.update(SCREEN, enemy_handle, hand, game, ball)
     # 更新滚动条
 
     update()

@@ -68,14 +68,21 @@ class Card(pygame.sprite.Sprite):
             self.draw(surface, scroll_rect)
             self.move_right()
 
+    # def draw(self, surface, scroll_rect):
+    #     if not self.released:
+    #         if self.card_rect.right > scroll_rect.left + 10:  # Adjusted to not cover the scroll bar border
+    #             visible_part = self.card_rect.clip(scroll_rect)
+    #             visible_part_relative = visible_part.move(-self.card_rect.x, -self.card_rect.y)
+    #             surface.blit(self.image, visible_part, area=visible_part_relative)
+    #     else:
+    #         surface.blit(self.image, (self.card_rect.x, self.card_rect.y))
     def draw(self, surface, scroll_rect):
         if not self.released:
             if self.card_rect.right > scroll_rect.left + 10:  # Adjusted to not cover the scroll bar border
                 visible_part = self.card_rect.clip(scroll_rect)
                 visible_part_relative = visible_part.move(-self.card_rect.x, -self.card_rect.y)
                 surface.blit(self.image, visible_part, area=visible_part_relative)
-        else:
-            surface.blit(self.image, (self.card_rect.x, self.card_rect.y))
+        surface.blit(self.image, (self.card_rect.x, self.card_rect.y))
 
     def move_right(self):
         # 增加卡片移动速度到当前位置

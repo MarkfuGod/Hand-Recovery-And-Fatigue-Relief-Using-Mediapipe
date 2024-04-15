@@ -12,7 +12,7 @@ mp_hands = mp.solutions.hands
 
 class HandTracking:
     def __init__(self):
-        self.hand_tracking = mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+        self.hand_tracking = mp_hands.Hands(min_detection_confidence=0.1, min_tracking_confidence=0.1)
         self.hand_x = 0
         self.hand_y = 0
         self.results = None

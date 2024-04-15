@@ -55,7 +55,7 @@ class ScrollBar(pygame.sprite.Sprite):
             # 在最后一张卡片的右侧随机距离处放置新卡片，以避免重叠
             card.card_rect.x = max_right + random.randint(50, 150)
 
-    def update(self, surface,enemy_handle,game):
+    def update(self, surface,enemy_handle,hand,game, ball):
         """
         更新滚动条，包括尝试添加新卡片和处理卡片之间的碰撞。
         :param 无
@@ -68,8 +68,18 @@ class ScrollBar(pygame.sprite.Sprite):
             for other_card in self.card_list:
                 if card != other_card and card.card_rect.colliderect(other_card.card_rect) and not other_card.moving:
                     card.moving = False
-        game.update(self.card_list)
+        # game.update(self.card_list)
+        game.update(self.card_list, ball, surface)
 
+    # def draw(self, surface):
+    #     """
+    #     在表面上绘制滚动条和所有卡片。
+    #     :param surface: 要绘制的表面
+    #     :return 无
+    #     """
+    #     surface.blit(self.scroll_image, self.scroll_rect)
+    #     for card in self.card_list:
+    #         card.draw(surface, self.scroll_rect)
     def draw(self, surface):
         """
         在表面上绘制滚动条和所有卡片。
@@ -77,5 +87,11 @@ class ScrollBar(pygame.sprite.Sprite):
         :return 无
         """
         surface.blit(self.scroll_image, self.scroll_rect)
-        for card in self.card_list:
-            card.draw(surface, self.scroll_rect)
+        # 判断卡片是否重叠，如果重叠后一个个卡片等于前一个客片向后移动5px
+        for card1 in self.card_list:
+            for card2 in self.card_list:
+                if card1 != card2 and card1.rect.colliderect(card2.rect):
+                    card2.rect.left = card1.rect.right + 5
+
+            for card in self.card_list:
+                card.draw(surface, self.scroll_rect)
