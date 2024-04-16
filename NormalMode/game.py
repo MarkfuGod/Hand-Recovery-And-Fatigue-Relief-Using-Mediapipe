@@ -68,7 +68,7 @@ class Game:
         (x, y) = self.hand_tracking.get_hand_center()
         self.hand.rect.center = (x, y)
         self.hand.left_click = (
-                self.hand_tracking.hand_closed is True or self.hand_tracking.thumb_up is True or self.hand_tracking.two_fingers_up is True or self.hand_tracking.finger_up is True)
+                self.hand_tracking.love is True or self.hand_tracking.six is True or self.hand_tracking.two_fingers_up is True or self.hand_tracking.finger_up is True)
         # print("thumb_up", self.hand.left_click)
         # print("two_fingers_up", self.hand.left_click)
         # print("hand_closed", self.hand.left_click)

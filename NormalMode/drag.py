@@ -18,8 +18,8 @@ class Drag:
         # print("drag")
         # print(hand.is_hand_closed())
         # 检查手是否闭合
-        if hand_tracking.hand_closed or hand_tracking.two_fingers_up or hand_tracking.thumb_up or hand_tracking.finger_up:
-            if hand_tracking.hand_closed:
+        if hand_tracking.love or hand_tracking.two_fingers_up or hand_tracking.six or hand_tracking.finger_up:
+            if hand_tracking.love:
                 # print(hand_tracking.hand_closed)
                 # 遍历所有卡片，检查是否与手的位置重叠
                 for card in card_list:
@@ -35,7 +35,7 @@ class Drag:
                         # 如果手闭合且卡片与手重叠，更新卡片位置为手的位置
                         card.card_rect.center = hand.rect.center
                         card.move = True  # 标记卡片为移动状态
-            if hand_tracking.thumb_up:
+            if hand_tracking.six:
                 # print("拖动")
                 # 遍历所有卡片，检查是否与手的位置重叠
                 for card in card_list:

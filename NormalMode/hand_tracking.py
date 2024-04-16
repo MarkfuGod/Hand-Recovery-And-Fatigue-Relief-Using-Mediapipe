@@ -1,3 +1,5 @@
+import math
+
 import cv2
 import mediapipe as mp
 from settings import *
@@ -12,15 +14,115 @@ mp_hands = mp.solutions.hands
 
 class HandTracking:
     def __init__(self):
-        self.hand_tracking = mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+        self.hand_tracking = mp_hands.Hands(static_image_mode=False,
+                                            max_num_hands=1,
+                                            model_complexity=1,
+                                            min_detection_confidence=0.4,
+                                            min_tracking_confidence=0.2)
         self.hand_x = 0
         self.hand_y = 0
         self.results = None
-        self.hand_closed = False
-        self.thumb_up = False
+        self.love = False
+        self.six = False
         # self.thumb_down = False
         self.finger_up = False
         self.two_fingers_up = False
+
+    def vector_2d_angle(self, v1, v2):
+        '''
+            求解二维向量的角度
+        '''
+        v1_x = v1[0]
+        v1_y = v1[1]
+        v2_x = v2[0]
+        v2_y = v2[1]
+        try:
+            angle_ = math.degrees(math.acos(
+                (v1_x * v2_x + v1_y * v2_y) / (((v1_x ** 2 + v1_y ** 2) ** 0.5) * ((v2_x ** 2 + v2_y ** 2) ** 0.5))))
+        except:
+            angle_ = 65535.
+        if angle_ > 180.:
+            angle_ = 65535.
+        return angle_
+
+    def hand_angle(self, hand_):
+        '''
+            获取对应手相关向量的二维角度,根据角度确定手势
+            这个角度是通过计算两个向量之间的角度得到的，这两个向量分别是从手腕到指关节的向量和从指关节到指尖的向量。
+            计算出的每个角度都被添加到一个列表中，然后返回这个列表。
+        '''
+        angle_list = []
+        # ---------------------------- thumb 大拇指角度
+        angle_ = self.vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[2][0])), (int(hand_[0][1]) - int(hand_[2][1]))),
+            ((int(hand_[3][0]) - int(hand_[4][0])), (int(hand_[3][1]) - int(hand_[4][1])))
+        )
+        angle_list.append(angle_)
+        # ---------------------------- index 食指角度
+        angle_ = self.vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[6][0])), (int(hand_[0][1]) - int(hand_[6][1]))),
+            ((int(hand_[7][0]) - int(hand_[8][0])), (int(hand_[7][1]) - int(hand_[8][1])))
+        )
+        angle_list.append(angle_)
+        # ---------------------------- middle 中指角度
+        angle_ = self.vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[10][0])), (int(hand_[0][1]) - int(hand_[10][1]))),
+            ((int(hand_[11][0]) - int(hand_[12][0])), (int(hand_[11][1]) - int(hand_[12][1])))
+        )
+        angle_list.append(angle_)
+        # ---------------------------- ring 无名指角度
+        angle_ = self.vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[14][0])), (int(hand_[0][1]) - int(hand_[14][1]))),
+            ((int(hand_[15][0]) - int(hand_[16][0])), (int(hand_[15][1]) - int(hand_[16][1])))
+        )
+        angle_list.append(angle_)
+        # ---------------------------- pink 小拇指角度
+        angle_ = self.vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[18][0])), (int(hand_[0][1]) - int(hand_[18][1]))),
+            ((int(hand_[19][0]) - int(hand_[20][0])), (int(hand_[19][1]) - int(hand_[20][1])))
+        )
+        angle_list.append(angle_)
+        return angle_list
+
+    def h_gesture(self, angle_list):
+        '''
+            # 二维约束的方法定义手势
+            每个手势都有一个特定的角度阈值，如果所有的角度都满足这个阈值，那么就认为是这个手势。
+            # fist five gun love one six three thumbup yeah
+        '''
+        thr_angle = 65.
+        thr_angle_thumb = 53.
+        thr_angle_s = 49.
+        gesture_str = None
+        if 65535. not in angle_list:
+            if (angle_list[0] > thr_angle_thumb) and (angle_list[1] > thr_angle) and (angle_list[2] > thr_angle) and (
+                    angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+                gesture_str = "fist"
+            # elif (angle_list[0] < thr_angle_s) and (angle_list[1] < thr_angle_s) and (angle_list[2] < thr_angle_s) and (
+            #         angle_list[3] < thr_angle_s) and (angle_list[4] < thr_angle_s):
+            #     gesture_str = "five"
+            elif (angle_list[0] < thr_angle_s) and (angle_list[1] < thr_angle_s) and (angle_list[2] > thr_angle) and (
+                    angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+                gesture_str = "gun"
+            elif (angle_list[0] < thr_angle_s) and (angle_list[1] < thr_angle_s) and (angle_list[2] > thr_angle) and (
+                    angle_list[3] > thr_angle) and (angle_list[4] < thr_angle_s):
+                gesture_str = "love"
+            elif (angle_list[0] > 5) and (angle_list[1] < thr_angle_s) and (angle_list[2] > thr_angle) and (
+                    angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+                gesture_str = "one"
+            elif (angle_list[0] < thr_angle_s) and (angle_list[1] > thr_angle) and (angle_list[2] > thr_angle) and (
+                    angle_list[3] > thr_angle) and (angle_list[4] < thr_angle_s):
+                gesture_str = "six"
+            elif (angle_list[0] > thr_angle_thumb) and (angle_list[1] < thr_angle_s) and (
+                    angle_list[2] < thr_angle_s) and (angle_list[3] < thr_angle_s) and (angle_list[4] > thr_angle):
+                gesture_str = "three"
+            elif (angle_list[0] < thr_angle_s) and (angle_list[1] > thr_angle) and (angle_list[2] > thr_angle) and (
+                    angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+                gesture_str = "thumbUp"
+            elif (angle_list[0] > thr_angle_thumb) and (angle_list[1] < thr_angle_s) and (
+                    angle_list[2] < thr_angle_s) and (angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+                gesture_str = "two"
+        return gesture_str
 
     def scan_hands(self, image):
         image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
@@ -29,48 +131,57 @@ class HandTracking:
         image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-        self.hand_closed = False
-        self.thumb_up = False
+        self.love = False
+        self.six = False
         # self.thumb_down = False
         self.finger_up = False
         self.two_fingers_up = False
 
         if self.results.multi_hand_landmarks:
+            gesture_strs = []
+            avg_xs = []
             for hand_landmarks in self.results.multi_hand_landmarks:
+                mp_drawing.draw_landmarks(image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
                 # 获取关键点坐标
                 landmarks = hand_landmarks.landmark
                 x, y = hand_landmarks.landmark[9].x, hand_landmarks.landmark[9].y
                 self.hand_x = int(x * SCREEN_WIDTH)
                 self.hand_y = int(y * SCREEN_HEIGHT)
-                # 修改握拳判断逻辑：只需要判断除了大拇指外其他四个手指握下就判断为握拳    hand_closed
-                finger_tips = [8, 12, 16, 20]  # 食指到小指的指尖landmark索引
-                finger_folded = [landmarks[finger_tip].y > landmarks[finger_tip - 2].y for finger_tip in finger_tips]
-                self.hand_closed = all(finger_folded)
-
-                # 修改拇指朝上判断逻辑   thumb_up
-                # 拇指朝上且其他手指握拳
-                if landmarks[4].y < landmarks[3].y and all(finger_folded[1:]):  # 修正逻辑，确保其他手指握拳
-                    self.thumb_up = True
-
-                # 新增识别数字二手势的代码  two_fingers_up
-                # 数字二手势：食指和中指伸直，无名指和小拇指弯曲
-                if landmarks[8].y < landmarks[6].y and landmarks[12].y < landmarks[10].y and all(landmarks[finger_tip].y > landmarks[finger_tip - 2].y for finger_tip in [16, 20]):
-                    self.two_fingers_up = True  # 添加一个新的属性来表示数字二手势
-
-                # # 拇指朝下判断
-                # if landmarks[4].y > landmarks[3].y > landmarks[2].y and landmarks[8].y > landmarks[6].y:
-                #     self.thumb_down = True
-
-                # 只有食指没弯曲判断 finger_up
-                if landmarks[8].y < landmarks[6].y and all(landmarks[finger_tip].y > landmarks[finger_tip - 2].y for finger_tip in [12, 16, 20]):
-                    self.finger_up = True
-
-                mp_drawing.draw_landmarks(
-                    image,
-                    hand_landmarks,
-                    mp_hands.HAND_CONNECTIONS,
-                    mp_drawing_styles.get_default_hand_landmarks_style(),
-                    mp_drawing_styles.get_default_hand_connections_style())
+                hand_local = []
+                for i in range(21):
+                    x = hand_landmarks.landmark[i].x * image.shape[1]
+                    y = hand_landmarks.landmark[i].y * image.shape[0]
+                    hand_local.append((x, y))
+                if hand_local:
+                    angle_list = self.hand_angle(hand_local)
+                    gesture_str = self.h_gesture(angle_list)
+                    if gesture_str == 'love':
+                        self.love = True
+                    elif gesture_str == 'six':
+                        self.six = True
+                    elif gesture_str == 'one':
+                        self.finger_up = True
+                    elif gesture_str == 'two':
+                        self.two_fingers_up = True
+                    gesture_strs.append(gesture_str)
+                    # Calculate the average x coordinate of the hand
+                    avgx = sum([point[0] for point in hand_local]) / len(hand_local)
+                    avg_xs.append(avgx)
+                # Decide the position of the text based on the average x coordinate
+            if len(gesture_strs) == 1:
+                text_pos = (0, 100)
+                cv2.putText(image, gesture_strs[0], text_pos, 0, 1.3, (0, 0, 255), 3)
+            elif len(gesture_strs) == 2:
+                if avg_xs[0] < avg_xs[1]:
+                    text_pos_left = (0, 100)
+                    text_pos_right = (image.shape[1] - 200, 100)
+                    cv2.putText(image, gesture_strs[0], text_pos_left, 0, 1.3, (0, 0, 255), 3)
+                    cv2.putText(image, gesture_strs[1], text_pos_right, 0, 1.3, (0, 0, 255), 3)
+                else:
+                    text_pos_left = (0, 100)
+                    text_pos_right = (image.shape[1] - 200, 100)
+                    cv2.putText(image, gesture_strs[1], text_pos_left, 0, 1.3, (0, 0, 255), 3)
+                    cv2.putText(image, gesture_strs[0], text_pos_right, 0, 1.3, (0, 0, 255), 3)
         return image
 
     def get_hand_center(self):

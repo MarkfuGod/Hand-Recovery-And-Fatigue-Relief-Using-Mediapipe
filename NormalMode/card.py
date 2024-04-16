@@ -26,7 +26,7 @@ class Card(pygame.sprite.Sprite):
         if self.type == "card_ice":
             self.image = self.card_ice
             self.card_rect = self.image.get_rect(topleft=(1200, 20))
-            self.gestureStatus = self.hand_tracking.hand_closed
+            self.gestureStatus = self.hand_tracking.love
         if self.type == "card_fire":
             self.image = self.card_fire
             self.card_rect = self.image.get_rect(topleft=(1200, 20))
@@ -34,7 +34,7 @@ class Card(pygame.sprite.Sprite):
         if self.type == "card_golden":
             self.image = self.card_golden
             self.card_rect = self.image.get_rect(topleft=(1200, 20))
-            self.gestureStatus = self.hand_tracking.thumb_up
+            self.gestureStatus = self.hand_tracking.six
         if self.type == "card_ground":
             self.image = self.card_ground
             self.card_rect = self.image.get_rect(topleft=(1200, 20))
