@@ -6,13 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4134d735-121f-4d00-89ce-c791e7df5b96" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_fire.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_fire.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_golden.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_golden.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_ground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_ice.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_ice.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/drag.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/drag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/ball.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/collision.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/enemy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/hand_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/hand_tracking.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NormalMode/scroll_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/scroll_bar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,20 +32,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/github/Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe/NormalMode/Assets/scroll_bar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/github/Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe/NormalMode/Assets/scroll_bar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode\Assets\scroll_bar" />
@@ -62,6 +61,8 @@
       <updated>1713155826822</updated>
       <workItem from="1713155834036" duration="615000" />
       <workItem from="1713229052441" duration="704000" />
+      <workItem from="1713248843625" duration="4607000" />
+      <workItem from="1713273316715" duration="1460000" />
     </task>
     <servers />
   </component>
@@ -70,10 +71,11 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/temp_hand_game_main$hand_tracking.coverage" NAME="hand_tracking 覆盖结果" MODIFIED="1713156119409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
-    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$main.coverage" NAME="main 覆盖结果" MODIFIED="1713240648777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
+    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$main.coverage" NAME="main 覆盖结果" MODIFIED="1713275360146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$card.coverage" NAME="card 覆盖结果" MODIFIED="1713237283944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$game.coverage" NAME="game 覆盖结果" MODIFIED="1713197514398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/temp_hand_game_main$main.coverage" NAME="main 覆盖结果" MODIFIED="1713156306616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/temp_hand_game_main$drag.coverage" NAME="drag 覆盖结果" MODIFIED="1713229750312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
+    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$hand_tracking.coverage" NAME="hand_tracking 覆盖结果" MODIFIED="1713266637409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
   </component>
 </project>

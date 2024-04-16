@@ -38,12 +38,11 @@ class Collision:
                 enemy.move_right()
         return False
 
-    def enemy_turned(enemy_group):
+    def enemy_turned(self, enemy_group):
         """
         处理被魅惑的enemy向右走的逻辑，并检测碰撞
         :param enemy_group: Enemy的精灵组
         """
-
         for enemy in enemy_group:
             if enemy.enchanted:
                 enemy.enemy_move_right()

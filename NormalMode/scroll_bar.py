@@ -13,10 +13,10 @@ class ScrollBar(pygame.sprite.Sprite):
         # 滚动条矩形
         self.scroll_rect = self.scroll_image.get_rect(center=(600, 80))
         # 传送带中种类卡片的数量
-        self.fire_num = 0;
-        self.ground_num = 0;
-        self.ice_num = 0;
-        self.golden_num = 0;
+        self.fire_num = random.randint(5,10);
+        self.ground_num = random.randint(5,7);
+        self.ice_num = random.randint(3,6);
+        self.golden_num = random.randint(4,8);
         # 滚动条中卡片列表
         self.card_list = pygame.sprite.Group()
         # card_list中最后添加卡片的时间
@@ -32,9 +32,38 @@ class ScrollBar(pygame.sprite.Sprite):
         """
         current_time = pygame.time.get_ticks()
         if len(self.card_list) < 10 and current_time - self.last_added_time > self.add_card_interval:
-            card_types = ["card_ice", "card_fire", "card_golden", "card_ground"]  # 定义卡片类型列表
-            selected_type = random.choice(card_types)  # 随机选择一个卡片类型
-            self.add_card(Card(selected_type))  # 使用随机选择的卡片类型创建卡片
+            # 定义卡片类型列表
+            card_types = ["card_ice", "card_fire", "card_golden", "card_ground"]
+            # 定义每种卡片的数量
+            ice_count = 0
+            fire_count = 0
+            golden_count = 0
+            ground_count = 0
+            # 检查每种卡片的数量是否已经达到规定的值
+            for card_type in card_types:
+                if card_type == "card_ice" and ice_count >= self.ice_num:
+                    card_types.remove("card_ice")
+                elif card_type == "card_fire" and fire_count >= self.fire_num:
+                    card_types.remove("card_fire")
+                elif card_type == "card_golden" and golden_count >= self.golden_num:
+                    card_types.remove("card_golden")
+                elif card_type == "card_ground" and ground_count >= self.ground_num:
+                    card_types.remove("card_ground")
+            # 如果所有的卡片都到了规定的值，就不再添加
+            if not card_types:
+                return
+            # 随机选择一种卡片类型
+            selected_type = random.choice(card_types)
+            if selected_type == "card_ice":
+                    ice_count += 1
+            elif selected_type == "card_fire":
+                    fire_count += 1
+            elif selected_type == "card_golden":
+                    golden_count += 1
+            elif selected_type == "card_ground":
+                    ground_count += 1
+            # 使用随机选择的卡片类型创建卡片
+            self.add_card(Card(selected_type))
             self.last_added_time = current_time
             self.add_card_interval = random.randint(2000, 5000)  # Randomize the interval for the next card
 

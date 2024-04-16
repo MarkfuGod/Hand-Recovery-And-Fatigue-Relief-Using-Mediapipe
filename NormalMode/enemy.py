@@ -3,7 +3,7 @@ import random
 import collision
 import image
 from collision import *
-
+from scroll_bar import ScrollBar
 from settings import *
 
 '''
@@ -39,7 +39,6 @@ class Enemy(pygame.sprite.Sprite):
         self.enchanted_collided = False
         self.frozen = False  # 被冻结
         self.immune = False  # 受到土球攻击向右走
-
         self.affected_by_card_ground = True
 
     def cross_line(self):
@@ -114,8 +113,9 @@ class EnemyHandle(pygame.sprite.Sprite):
         self.last_appear_time = pygame.time.get_ticks()
         # 用于存储敌人列表
         self.enemy_list = pygame.sprite.Group()
+        self.scrollBar = ScrollBar()
         # 随机数规定敌人的总数
-        self.enemy_total = random.randint(25, 30)
+        self.enemy_total = (self.scrollBar.fire_num+self.scrollBar.golden_num/2)*random.uniform(0.6,0.8)
 
         self.collision = Collision()
 
@@ -159,7 +159,7 @@ class EnemyHandle(pygame.sprite.Sprite):
         self.enemy_number += 1
         self.enemy_list.add(enemy)
         self.enemy_interval = random.randint(1000, self.enemy_appear_speed)
-        self.enemy_total = random.randint(25, 30)
+
 
     # def update(self, surface, ball):
     #     """
@@ -185,6 +185,6 @@ class EnemyHandle(pygame.sprite.Sprite):
         self.enemy_list.update()
         self.enemy_list.draw(surface)
         # self.enemy_enchanted_handle(ball)
-        collision.Collision.enemy_turned(self.enemy_list)
+        collision.Collision.enemy_turned(self.collision,self.enemy_list)
         for enemy in self.enemy_list:
             self.remove_enemy(enemy)

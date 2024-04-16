@@ -21,7 +21,7 @@ SCROLL_BAR_SIZES = (1000,133)
 CARD_SIZES = (100,120)
 HEXAGON_SIZES = (200,153)
 LANE_SIZES = (1000,160)
-
+BALL_SIZE = (50,50)
 
 # drawing
 DRAW_HITBOX = False # will draw all the hitbox

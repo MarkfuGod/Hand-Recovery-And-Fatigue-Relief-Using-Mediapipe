@@ -12,7 +12,7 @@ mp_hands = mp.solutions.hands
 
 class HandTracking:
     def __init__(self):
-        self.hand_tracking = mp_hands.Hands(min_detection_confidence=0.1, min_tracking_confidence=0.1)
+        self.hand_tracking = mp_hands.Hands(min_detection_confidence=0.3, min_tracking_confidence=0.1)
         self.hand_x = 0
         self.hand_y = 0
         self.results = None
@@ -23,7 +23,6 @@ class HandTracking:
         self.two_fingers_up = False
 
     def scan_hands(self, image):
-        rows, cols, _ = image.shape
         image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
         image.flags.writeable = False
         self.results = self.hand_tracking.process(image)
@@ -40,9 +39,9 @@ class HandTracking:
             for hand_landmarks in self.results.multi_hand_landmarks:
                 # 获取关键点坐标
                 landmarks = hand_landmarks.landmark
-                self.hand_x = int(landmarks[9].x * cols)
-                self.hand_y = int(landmarks[9].y * rows)
-
+                x, y = hand_landmarks.landmark[9].x, hand_landmarks.landmark[9].y
+                self.hand_x = int(x * SCREEN_WIDTH)
+                self.hand_y = int(y * SCREEN_HEIGHT)
                 # 修改握拳判断逻辑：只需要判断除了大拇指外其他四个手指握下就判断为握拳    hand_closed
                 finger_tips = [8, 12, 16, 20]  # 食指到小指的指尖landmark索引
                 finger_folded = [landmarks[finger_tip].y > landmarks[finger_tip - 2].y for finger_tip in finger_tips]
