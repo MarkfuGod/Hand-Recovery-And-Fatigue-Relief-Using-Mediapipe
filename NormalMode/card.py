@@ -59,7 +59,7 @@ class Card(pygame.sprite.Sprite):
         if not self.released:
             # handtracking.card_follow_hand(self)
             self.draw(surface, scroll_rect)
-            self.follow_hand()
+            # self.follow_hand()
             if self.moving:
                 self.card_rect.x -= self.card_speed
                 if self.card_rect.x < scroll_rect.left:  # 如果卡片移动到scroll_rect的左侧
@@ -68,7 +68,7 @@ class Card(pygame.sprite.Sprite):
         else:
             enemy_handle.enemy_enchanted_handle(self)
             # handtracking.card_follow_hand(self)
-            self.follow_hand()
+            # self.follow_hand()
             # 被释放那就从传送带中删除
             self.draw(surface, scroll_rect)
             self.move_right()

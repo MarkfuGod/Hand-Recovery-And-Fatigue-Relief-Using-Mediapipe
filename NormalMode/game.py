@@ -74,7 +74,7 @@ class Game:
         # print("hand_closed", self.hand.left_click)
         # print("finger_up", self.hand.left_click)
         # TODO 新增
-        self.which_card, self.is_draw = self.drag.update(self.hand, card_list, ball_handle, surface, lane)
+        self.which_card, self.is_draw = self.drag.update(self.hand, card_list, ball_handle, surface, lane,self.hand_tracking)
         print("is_draw" + str(self.is_draw))
         # if self.is_draw:
         ball_handle.update(surface)
