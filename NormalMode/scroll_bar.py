@@ -69,7 +69,13 @@ class ScrollBar(pygame.sprite.Sprite):
                 if card != other_card and card.card_rect.colliderect(other_card.card_rect) and not other_card.moving:
                     card.moving = False
         # game.update(self.card_list)
-        game.update(self.card_list, ball_handle, surface, lane,enemy_handle)
+        game.update(self.card_list, ball_handle, surface, lane, enemy_handle)
+
+    def permit_moving_after_release(self):
+        for card in self.card_list:
+            if card.rect.left == self.scroll_rect.left:
+                return True
+        return False
 
     # def draw(self, surface):
     #     """
@@ -87,11 +93,13 @@ class ScrollBar(pygame.sprite.Sprite):
         :return 无
         """
         surface.blit(self.scroll_image, self.scroll_rect)
-        # 判断卡片是否重叠，如果重叠后一个个卡片等于前一个客片向后移动5px
+        # 判断卡片是否重叠，如果重叠后一个卡片等于前一个卡片向后移动5px
         for card1 in self.card_list:
+            if not self.permit_moving_after_release():
+                card1.moving = True
             for card2 in self.card_list:
                 if card1 != card2 and card1.rect.colliderect(card2.rect):
                     card2.rect.left = card1.rect.right + 5
 
-            for card in self.card_list:
-                card.draw(surface, self.scroll_rect)
+        for card in self.card_list:
+            card.draw(surface, self.scroll_rect)

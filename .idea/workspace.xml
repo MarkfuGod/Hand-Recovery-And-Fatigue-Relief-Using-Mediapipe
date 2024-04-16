@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4134d735-121f-4d00-89ce-c791e7df5b96" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_fire.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_fire.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_golden.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_golden.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_ice.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/scroll_bar/card_ice.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NormalMode/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/card.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NormalMode/drag.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/drag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NormalMode/scroll_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/scroll_bar.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +39,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/wuyong/双创/v1.7/temp_hand_game-main",
+    "last_opened_file_path": "D:/github/Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe/NormalMode/Assets/scroll_bar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -46,6 +47,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode\Assets\scroll_bar" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -64,8 +70,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/temp_hand_game_main$hand_tracking.coverage" NAME="hand_tracking 覆盖结果" MODIFIED="1713156119409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
-    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$main.coverage" NAME="main 覆盖结果" MODIFIED="1713237224608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
-    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$card.coverage" NAME="card 覆盖结果" MODIFIED="1713237219944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
+    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$main.coverage" NAME="main 覆盖结果" MODIFIED="1713240648777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
+    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$card.coverage" NAME="card 覆盖结果" MODIFIED="1713237283944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$game.coverage" NAME="game 覆盖结果" MODIFIED="1713197514398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/temp_hand_game_main$main.coverage" NAME="main 覆盖结果" MODIFIED="1713156306616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/temp_hand_game_main$drag.coverage" NAME="drag 覆盖结果" MODIFIED="1713229750312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />

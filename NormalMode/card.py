@@ -40,7 +40,7 @@ class Card(pygame.sprite.Sprite):
             self.card_rect = self.image.get_rect(topleft=(1200, 20))
             self.gestureStatus = self.hand_tracking.finger_up
         # 卡片移动速度
-        # FIXME 暂改原为2
+        # FIXME 暂改,原为2
         self.card_speed = 10
         self.rect = self.card_rect
         # 标记卡片是否应该继续移动
@@ -59,7 +59,6 @@ class Card(pygame.sprite.Sprite):
         if not self.released:
             # handtracking.card_follow_hand(self)
             self.draw(surface, scroll_rect)
-            # self.follow_hand()
             if self.moving:
                 self.card_rect.x -= self.card_speed
                 if self.card_rect.x < scroll_rect.left:  # 如果卡片移动到scroll_rect的左侧
@@ -68,7 +67,6 @@ class Card(pygame.sprite.Sprite):
         else:
             enemy_handle.enemy_enchanted_handle(self)
             # handtracking.card_follow_hand(self)
-            # self.follow_hand()
             # 被释放那就从传送带中删除
             self.draw(surface, scroll_rect)
             self.move_right()
@@ -101,8 +99,8 @@ class Card(pygame.sprite.Sprite):
         # 假设image_to_clear是一个pygame.Surface对象
         self.kill()  # 使用透明颜色填充图像
 
-    def follow_hand(self):
-        if self.gestureStatus:
-            if self.rect.collidepoint(self.hand.rect):
-                self.card_rect.center = self.hand.rect.center  # 更新卡片的位置为手的位置
-                self.moving = False
+    # def follow_hand(self):
+    #     if self.gestureStatus:
+    #         if self.rect.collidepoint(self.hand.rect):
+    #             self.card_rect.center = self.hand.rect.center  # 更新卡片的位置为手的位置
+    #             self.moving = False
