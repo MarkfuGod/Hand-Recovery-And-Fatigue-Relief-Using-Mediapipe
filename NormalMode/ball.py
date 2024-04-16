@@ -41,7 +41,7 @@ class Ball(pygame.sprite.Sprite):
 
     def move_right(self):
         # 增加卡片移动速度到当前位置
-        self.rect.x += 8
+        self.rect.x += 5
         print("------------------------------")
         print(str(self.card_move_speed))
         print("移动" + str(self.rect.x))

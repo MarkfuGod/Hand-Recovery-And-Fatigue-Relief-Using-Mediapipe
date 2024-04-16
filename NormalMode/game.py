@@ -59,7 +59,7 @@ class Game:
         #              font=FONTS["medium"],
         #              shadow=True, shadow_color=(255, 255, 255))
 
-    def update(self, card_list, ball_handle, surface, lane,enemy_handle):
+    def update(self, card_list, ball_handle, surface, lane,enemy_handle,scroll_ball):
 
         self.load_camera()
         self.set_hand_position()
@@ -74,7 +74,7 @@ class Game:
         # print("hand_closed", self.hand.left_click)
         # print("finger_up", self.hand.left_click)
         # TODO 新增
-        self.which_card, self.is_draw = self.drag.update(self.hand, card_list, ball_handle, surface, lane,self.hand_tracking)
+        self.which_card, self.is_draw = self.drag.update(self.hand, card_list, ball_handle, surface, lane,self.hand_tracking,scroll_ball)
         print("is_draw" + str(self.is_draw))
         # if self.is_draw:
         ball_handle.update(surface)

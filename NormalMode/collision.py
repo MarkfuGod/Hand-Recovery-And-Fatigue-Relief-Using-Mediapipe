@@ -26,16 +26,22 @@ class Collision:
             elif Ball.get_card_type(ball) == 'card_ice' and not enemy.frozen:
                 enemy.frozen = True
                 ball.clear_image()
-            elif Ball.get_card_type(
-                    ball) == 'card_ground' and ball.effected_by_card_ground and enemy.affected_by_card_ground:
-                enemy.immune = True
-
-                enemy.move_right()
+            elif Ball.get_card_type(ball) == 'card_ground' and ball.effected_by_card_ground and enemy.affected_by_card_ground:
+                if ball.rect.x >= 1050:  # 检查enemy是否到达lane的最右边
+                    # enemy.move_right = lambda: None  # 停止enemy的移动
+                    ball.kill()  # 移除card_ground
+                else:
+                    enemy.move_right()
                 ball.effected_by_card_ground = False
                 enemy.affected_by_card_ground = False
             elif Ball.get_card_type(
                     ball) == 'card_ground' and ball.effected_by_card_ground == False and enemy.affected_by_card_ground == False:
-                enemy.move_right()
+                if ball.rect.x >= 1050:  # 检查enemy是否到达lane的最右边
+                    # enemy.move_right = lambda: None  # 停止enemy的移动
+                    ball.kill()  # 移除card_ground
+                else:
+                    enemy.move_right()
+                # enemy.move_right()
         return False
 
     def enemy_turned(self, enemy_group):

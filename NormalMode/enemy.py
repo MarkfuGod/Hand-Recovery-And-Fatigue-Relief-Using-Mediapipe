@@ -115,7 +115,7 @@ class EnemyHandle(pygame.sprite.Sprite):
         self.enemy_list = pygame.sprite.Group()
         self.scrollBar = ScrollBar()
         # 随机数规定敌人的总数
-        self.enemy_total = (self.scrollBar.fire_num+self.scrollBar.golden_num/2)*random.uniform(0.6,0.8)
+        self.enemy_total = (self.scrollBar.fire_num+self.scrollBar.golden_num/2)*random.uniform(0.8,0.9)
 
         self.collision = Collision()
 
