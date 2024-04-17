@@ -73,6 +73,7 @@ while True:
     # game.update()
     enemy_handle.update(SCREEN)
     scroll_bar.update(SCREEN, enemy_handle, hand, game, ball_handle, lane[2])
+    game.draw_score()
     # game.update(scroll_bar.card_list, ball, SCREEN)
     # 更新滚动条
     update()
