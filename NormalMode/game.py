@@ -25,7 +25,9 @@ class Game:
         self.cap = cv2.VideoCapture(0)
         # TODO 新增
         self.drag = Drag()
-        self.collision = Collision()
+
+        self.collision=Collision()
+        self.score = 0  # 添加分数属性
 
     def reset(self):  # reset all the needed variables
         self.hand_tracking = HandTracking()
@@ -35,6 +37,11 @@ class Game:
         self.score = 0
         self.game_start_time = time.time()
 
+    def draw_score(self):
+        font = pygame.font.SysFont(None, 36)  # 选择合适的字体和大小
+        score_text = font.render(f'Score: {self.score}', True, (0, 0, 0))  # 创建分数文本
+        self.surface.blit(score_text, (self.surface.get_width() - score_text.get_width() - 10,
+                                       self.surface.get_height() - score_text.get_height() - 10))  # 将分数绘制到右下角
     def load_camera(self):
         _, self.frame = self.cap.read()
 
@@ -78,7 +85,8 @@ class Game:
         # if self.is_draw:
         ball_handle.update(surface)
         for ball in ball_handle.ball_list:
-            self.collision.collide_with_element(ball, enemy_handle.enemy_list)
+            self.collision.collide_with_element(ball,enemy_handle.enemy_list,self)
+
 
         if self.hand.left_click:
             self.hand.image = self.hand.image_smaller.copy()

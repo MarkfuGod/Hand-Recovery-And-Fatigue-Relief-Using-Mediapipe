@@ -5,7 +5,7 @@ from ball import Ball
 
 class Collision:
     @staticmethod
-    def collide_with_element(ball, enemy_group):
+    def collide_with_element(ball, enemy_group,game):
         """
         检测ball与enemy组中任一enemy是否发生碰撞
         :param ball: Ball的实例
@@ -17,10 +17,12 @@ class Collision:
             if Ball.get_card_type(ball) == 'card_golden' and not enemy.collided and not enemy.enchanted:
                 enemy.enchanted = True
                 ball.clear_image()
+                game.score += 10  # 增加分数
                 if enemy.frozen:  # 如果enemy被冻结
                     enemy.frozen = False  # 解冻enemy
             elif Ball.get_card_type(ball) == 'card_fire':
                 enemy.kill()  # 直接杀死enemy
+                game.score += 10  # 增加分数
                 ball.clear_image()
                 if enemy.frozen:  # 如果enemy被冻结
                     enemy.frozen = False  # 解冻enemy
