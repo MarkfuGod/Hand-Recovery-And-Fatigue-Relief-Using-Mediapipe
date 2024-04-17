@@ -7,7 +7,7 @@ class Hexagon:
         self.x = x
         self.y = y
         self.status = 0
-        self.image = load("Assets/hexagon.png",size=HEXAGON_SIZES)
+        self.image = load("Assets/hexagon.png", size=HEXAGON_SIZES)
         self.rect = self.image.get_rect(topleft=(self.x, self.y + HEXAGON_INDEX))
 
     def draw_hexagon(self, surface):
@@ -30,4 +30,3 @@ class Hexagon:
             pass
         elif self.status == 4:
             pass
-

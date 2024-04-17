@@ -9,10 +9,10 @@ class Ball(pygame.sprite.Sprite):
         super().__init__()
         # 在游戏设置区域定义移动速度
         self.card_move_speed = 5
-        self.card_fire = image.load("Assets/ball/fire.png",size=BALL_SIZE)
-        self.card_golden = image.load("Assets/ball/golden.png",size=BALL_SIZE)
-        self.card_ice = image.load("Assets/ball/ice.png",size=BALL_SIZE)
-        self.card_ground = image.load("Assets/ball/ground.png",size=BALL_SIZE)
+        self.card_fire = image.load("Assets/ball/fire.png", size=BALL_SIZE)
+        self.card_golden = image.load("Assets/ball/golden.png", size=BALL_SIZE)
+        self.card_ice = image.load("Assets/ball/ice.png", size=BALL_SIZE)
+        self.card_ground = image.load("Assets/ball/ground.png", size=BALL_SIZE)
         self.type = card_type  # 添加type属性
         self.effected_by_card_ground = True
         if self.type == "card_ice":
