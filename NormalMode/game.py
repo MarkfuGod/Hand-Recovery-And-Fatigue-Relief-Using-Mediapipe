@@ -1,20 +1,17 @@
-import pygame
 import time
-import random
 
 from NormalMode.collision import Collision
-from ball import Ball
 from drag import Drag
-from settings import *
 from hand import Hand
 from hand_tracking import HandTracking
 import cv2
 from scroll_bar import ScrollBar
-import ui
 
 
 class Game:
     def __init__(self, surface):
+        self.which_card = None
+        self.frame = None
         self.is_draw = False
         self.gestures = []
         self.game_start_time = time.time()
@@ -28,8 +25,10 @@ class Game:
         self.cap = cv2.VideoCapture(0)
         # TODO 新增
         self.drag = Drag()
+
         self.collision=Collision()
         self.score = 0  # 添加分数属性
+
     def reset(self):  # reset all the needed variables
         self.hand_tracking = HandTracking()
         self.scroll_bar = ScrollBar()
@@ -64,7 +63,7 @@ class Game:
         #              font=FONTS["medium"],
         #              shadow=True, shadow_color=(255, 255, 255))
 
-    def update(self, card_list, ball_handle, surface, lane,enemy_handle,scroll_ball):
+    def update(self, card_list, ball_handle, surface, lane, enemy_handle, scroll_ball):
 
         self.load_camera()
         self.set_hand_position()
@@ -73,18 +72,21 @@ class Game:
         (x, y) = self.hand_tracking.get_hand_center()
         self.hand.rect.center = (x, y)
         self.hand.left_click = (
-                self.hand_tracking.love is True or self.hand_tracking.six is True or self.hand_tracking.two_fingers_up is True or self.hand_tracking.finger_up is True)
+                self.hand_tracking.love is True or self.hand_tracking.six is True or self.hand_tracking.two_fingers_up
+                is True or self.hand_tracking.finger_up is True)
         # print("thumb_up", self.hand.left_click)
         # print("two_fingers_up", self.hand.left_click)
         # print("hand_closed", self.hand.left_click)
         # print("finger_up", self.hand.left_click)
         # TODO 新增
-        self.which_card, self.is_draw = self.drag.update(self.hand, card_list, ball_handle, surface, lane,self.hand_tracking,scroll_ball)
+        self.which_card, self.is_draw = self.drag.update(self.hand, card_list, ball_handle, surface, lane,
+                                                         self.hand_tracking, scroll_ball)
         print("is_draw" + str(self.is_draw))
         # if self.is_draw:
         ball_handle.update(surface)
         for ball in ball_handle.ball_list:
             self.collision.collide_with_element(ball,enemy_handle.enemy_list,self)
+
 
         if self.hand.left_click:
             self.hand.image = self.hand.image_smaller.copy()

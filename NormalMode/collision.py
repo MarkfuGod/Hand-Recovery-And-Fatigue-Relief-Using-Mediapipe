@@ -4,7 +4,8 @@ from ball import Ball
 
 
 class Collision:
-    def collide_with_element(self, ball, enemy_group,game):
+    @staticmethod
+    def collide_with_element(ball, enemy_group,game):
         """
         检测ball与enemy组中任一enemy是否发生碰撞
         :param ball: Ball的实例

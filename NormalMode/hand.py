@@ -1,7 +1,5 @@
 import image
 from settings import *
-from hand_tracking import HandTracking
-import cv2
 
 
 class Hand:
