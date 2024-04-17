@@ -115,7 +115,7 @@ class EnemyHandle(pygame.sprite.Sprite):
         self.enemy_list = pygame.sprite.Group()
         self.scrollBar = ScrollBar()
         # 随机数规定敌人的总数
-        self.enemy_total = (self.scrollBar.fire_num+self.scrollBar.golden_num/2)*random.uniform(0.8,0.9)
+        self.enemy_total = (self.scrollBar.fire_num + self.scrollBar.golden_num / 2) * random.uniform(0.8, 0.9)
 
         self.collision = Collision()
 
@@ -160,7 +160,6 @@ class EnemyHandle(pygame.sprite.Sprite):
         self.enemy_list.add(enemy)
         self.enemy_interval = random.randint(1000, self.enemy_appear_speed)
 
-
     # def update(self, surface, ball):
     #     """
     #     更新并绘制敌人组，并判断是否移除敌人
@@ -185,6 +184,6 @@ class EnemyHandle(pygame.sprite.Sprite):
         self.enemy_list.update()
         self.enemy_list.draw(surface)
         # self.enemy_enchanted_handle(ball)
-        collision.Collision.enemy_turned(self.collision,self.enemy_list)
+        collision.Collision.enemy_turned(self.collision, self.enemy_list)
         for enemy in self.enemy_list:
             self.remove_enemy(enemy)

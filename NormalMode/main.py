@@ -1,12 +1,11 @@
 # Setup Python ----------------------------------------------- #
-import pygame
 import sys
 import os
 
+
+from NormalMode.settings import *
 from lane import Lane
-from enemy import Enemy, EnemyHandle
-from settings import *
-from scroll_bar import *
+from enemy import EnemyHandle
 from game import *
 from NormalMode.ball import BallHandle
 
@@ -48,15 +47,13 @@ def update():
 
 scroll_bar = ScrollBar()
 
-lane = []
-lane.append(Lane(LANE_X, LANE_Y))
-lane.append(Lane(LANE_X, LANE_Y + LANE_VEL))
-lane.append(Lane(LANE_X, LANE_Y + LANE_VEL * 2))
+lane = [Lane(LANE_X, LANE_Y),
+        Lane(LANE_X, LANE_Y + LANE_VEL),
+        Lane(LANE_X, LANE_Y + LANE_VEL * 2)]
 
 # TODO 新增
 ball_handle = BallHandle()
 hand = Hand()
-
 
 enemy_handle = EnemyHandle()
 
