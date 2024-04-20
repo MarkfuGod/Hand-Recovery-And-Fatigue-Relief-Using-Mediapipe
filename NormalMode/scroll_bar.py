@@ -13,10 +13,10 @@ class ScrollBar(pygame.sprite.Sprite):
         # 滚动条矩形
         self.scroll_rect = self.scroll_image.get_rect(center=(600, 80))
         # 传送带中种类卡片的数量
-        self.fire_num = random.randint(5,10);
-        self.ground_num = random.randint(5,7);
-        self.ice_num = random.randint(3,6);
-        self.golden_num = random.randint(4,8);
+        self.fire_num = random.randint(5, 10)
+        self.ground_num = random.randint(5, 7)
+        self.ice_num = random.randint(3, 6)
+        self.golden_num = random.randint(4, 8)
         # 滚动条中卡片列表
         self.card_list = pygame.sprite.Group()
         # card_list中最后添加卡片的时间
@@ -31,7 +31,7 @@ class ScrollBar(pygame.sprite.Sprite):
         :return 无
         """
         current_time = pygame.time.get_ticks()
-        if len(self.card_list) < 10 and current_time - self.last_added_time > self.add_card_interval:
+        if len(self.card_list) < 9 and current_time - self.last_added_time > self.add_card_interval:
             # 定义卡片类型列表
             card_types = ["card_ice", "card_fire", "card_golden", "card_ground"]
             # 定义每种卡片的数量
@@ -55,13 +55,13 @@ class ScrollBar(pygame.sprite.Sprite):
             # 随机选择一种卡片类型
             selected_type = random.choice(card_types)
             if selected_type == "card_ice":
-                    ice_count += 1
+                ice_count += 1
             elif selected_type == "card_fire":
-                    fire_count += 1
+                fire_count += 1
             elif selected_type == "card_golden":
-                    golden_count += 1
+                golden_count += 1
             elif selected_type == "card_ground":
-                    ground_count += 1
+                ground_count += 1
             # 使用随机选择的卡片类型创建卡片
             self.add_card(Card(selected_type))
             self.last_added_time = current_time
@@ -83,6 +83,7 @@ class ScrollBar(pygame.sprite.Sprite):
         if last_card and last_card != card:
             # 在最后一张卡片的右侧随机距离处放置新卡片，以避免重叠
             card.card_rect.x = max_right + random.randint(50, 150)
+
     def add_card1(self, card):
         """
         向卡片列表中添加卡片，并根据上一个卡片的位置设置新卡片的位置。
@@ -90,16 +91,17 @@ class ScrollBar(pygame.sprite.Sprite):
         :return 无
         """
         self.card_list.add(card)
-        last_card = None
+        # last_card = None
         max_right = 0
         for c in self.card_list:
             if c.card_rect.right > max_right:
                 max_right = c.card_rect.right
-                last_card = c
+                # last_card = c
 
         card.card_rect.x = 100
         card.card_rect.y = 20
-    def update(self, surface, enemy_handle, hand, game, ball_handle, lane):
+
+    def update(self, surface, enemy_handle, ball_handle):
         """
         更新滚动条，包括尝试添加新卡片和处理卡片之间的碰撞。
         :param 无
@@ -112,24 +114,19 @@ class ScrollBar(pygame.sprite.Sprite):
             for other_card in self.card_list:
                 if card != other_card and card.card_rect.colliderect(other_card.card_rect) and not other_card.moving:
                     card.moving = False
-        # game.update(self.card_list)
-        game.update(self.card_list, ball_handle, surface, lane, enemy_handle,self)
 
-    def permit_moving_after_release(self):
-        for card in self.card_list:
-            if card.rect.left == self.scroll_rect.left:
-                return True
-        return False
+    def handle_card_collide(self):
+        """
+        用于处理抓到卡片时和其他卡片的碰撞事件，以及卡片之间自主碰撞事件
+        """
+        for card1 in self.card_list:
+            card1.moving = True
+            for card2 in self.card_list:
+                if card1 != card2:
+                    if card2.rect.colliderect(card1.rect) and not card1.is_drag and not card2.is_drag:
+                        card2.rect.left = card1.rect.right + 5
+                        card2.moving = False
 
-    # def draw(self, surface):
-    #     """
-    #     在表面上绘制滚动条和所有卡片。
-    #     :param surface: 要绘制的表面
-    #     :return 无
-    #     """
-    #     surface.blit(self.scroll_image, self.scroll_rect)
-    #     for card in self.card_list:
-    #         card.draw(surface, self.scroll_rect)
     def draw(self, surface):
         """
         在表面上绘制滚动条和所有卡片。
@@ -138,12 +135,11 @@ class ScrollBar(pygame.sprite.Sprite):
         """
         surface.blit(self.scroll_image, self.scroll_rect)
         # 判断卡片是否重叠，如果重叠后一个卡片等于前一个卡片向后移动5px
-        for card1 in self.card_list:
-            if not self.permit_moving_after_release():
-                card1.moving = True
-            for card2 in self.card_list:
-                if card1 != card2 and card1.rect.colliderect(card2.rect):
-                    card2.rect.left = card1.rect.right + 5
-
+        self.handle_card_collide()
         for card in self.card_list:
             card.draw(surface, self.scroll_rect)
+
+    def reset(self):
+        self.card_list.empty()  # 清除所有卡片
+        self.last_added_time = pygame.time.get_ticks()  # 重置上次添加卡片的时间
+        self.add_card_interval = random.randint(2000, 5000)  # 重新随机化添加卡片的时间间隔

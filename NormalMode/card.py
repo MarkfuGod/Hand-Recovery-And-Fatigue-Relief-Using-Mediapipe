@@ -53,6 +53,7 @@ class Card(pygame.sprite.Sprite):
         self.move = False
         self.ball = Ball(self.type)
         self.has_used = False
+        self.is_drag = False
 
     def update(self, scroll_rect, surface, enemy_handle):
         # 如果卡片没有被

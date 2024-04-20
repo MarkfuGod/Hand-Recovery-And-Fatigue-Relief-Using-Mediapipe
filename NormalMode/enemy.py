@@ -48,7 +48,9 @@ class Enemy(pygame.sprite.Sprite):
         """
         if self.rect.x <= 100:
             self.state = False
-
+            return True
+        else:
+            return False
     def enemy_move_left(self):
         """
         更新动画帧
@@ -115,8 +117,7 @@ class EnemyHandle(pygame.sprite.Sprite):
         self.enemy_list = pygame.sprite.Group()
         self.scrollBar = ScrollBar()
         # 随机数规定敌人的总数
-        self.enemy_total = (self.scrollBar.fire_num+self.scrollBar.golden_num/2)*random.uniform(0.8,0.9)
-
+        self.enemy_total = int((self.scrollBar.fire_num + self.scrollBar.golden_num / 2) * random.uniform(0.8, 0.9))
         self.collision = Collision()
 
     def enemy_enchanted_handle(self, ball):
@@ -140,7 +141,7 @@ class EnemyHandle(pygame.sprite.Sprite):
         :return:
         """
         current_time = pygame.time.get_ticks()
-        if self.enemy_number <= self.enemy_total and current_time - self.last_appear_time >= self.enemy_interval:
+        if self.enemy_total > 0 and current_time - self.last_appear_time >= self.enemy_interval:
             self.last_appear_time = current_time
             self.add_enemy(Enemy())
 
@@ -154,37 +155,30 @@ class EnemyHandle(pygame.sprite.Sprite):
         for enemy_item in self.enemy_list:
             if enemy_item.enemy_row == enemy.enemy_row:
                 if enemy_item.rect.colliderect(enemy.rect):
-                    enemy.rect.x = enemy_item.rect.x + 170
+                    enemy.rect.right = enemy_item.rect.right + 300
                     break
-        self.enemy_number += 1
+        self.enemy_total -= 1
         self.enemy_list.add(enemy)
-        self.enemy_interval = random.randint(1000, self.enemy_appear_speed)
-
-
-    # def update(self, surface, ball):
-    #     """
-    #     更新并绘制敌人组，并判断是否移除敌人
-    #     :param surface:
-    #     :return:
-    #     """
-    #     self.try_add_enemy()
-    #     self.enemy_list.update()
-    #     self.enemy_list.draw(surface)
-    #     self.enemy_enchanted_handle(ball)
-    #     collision.Collision.enemy_turned(self.enemy_list)
-    #     for enemy in self.enemy_list:
-    #         self.remove_enemy(enemy)
+        self.enemy_interval = random.randint(2000, self.enemy_appear_speed)
 
     def update(self, surface):
         """
         更新并绘制敌人组，并判断是否移除敌人
         :param surface:
-        :return:
+        :return: -1 or 0 or 1  -1为游戏失败 0 为游戏正常运行 1为游戏胜利
         """
         self.try_add_enemy()
         self.enemy_list.update()
         self.enemy_list.draw(surface)
-        # self.enemy_enchanted_handle(ball)
-        collision.Collision.enemy_turned(self.collision,self.enemy_list)
+        collision.Collision.enemy_turned(self.collision, self.enemy_list)
         for enemy in self.enemy_list:
+            if enemy.cross_line():
+                return -1
             self.remove_enemy(enemy)
+        if self.enemy_total == 0 and len(self.enemy_list) == 0:
+            return 1
+        return 0
+    def reset(self):
+        self.enemy_list.empty()  # 清除所有敌人
+        self.enemy_total = int((self.scrollBar.fire_num + self.scrollBar.golden_num / 2) * random.uniform(0.8, 0.9))  # 重置敌人数量
+        self.last_appear_time = pygame.time.get_ticks()  # 重置上次出现时间
