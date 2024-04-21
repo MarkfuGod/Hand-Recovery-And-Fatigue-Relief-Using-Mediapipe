@@ -56,9 +56,8 @@ class Card(pygame.sprite.Sprite):
         self.is_drag = False
 
     def update(self, scroll_rect, surface, enemy_handle):
-        # 如果卡片没有被
+        # 如果卡片没有被选中
         if not self.released:
-            # handtracking.card_follow_hand(self)
             self.draw(surface, scroll_rect)
             if self.moving:
                 self.card_rect.x -= self.card_speed
@@ -67,19 +66,9 @@ class Card(pygame.sprite.Sprite):
                     self.moving = False
         else:
             enemy_handle.enemy_enchanted_handle(self)
-            # handtracking.card_follow_hand(self)
             # 被释放那就从传送带中删除
             self.draw(surface, scroll_rect)
-            self.move_right()
 
-    # def draw(self, surface, scroll_rect):
-    #     if not self.released:
-    #         if self.card_rect.right > scroll_rect.left + 10:  # Adjusted to not cover the scroll bar border
-    #             visible_part = self.card_rect.clip(scroll_rect)
-    #             visible_part_relative = visible_part.move(-self.card_rect.x, -self.card_rect.y)
-    #             surface.blit(self.image, visible_part, area=visible_part_relative)
-    #     else:
-    #         surface.blit(self.image, (self.card_rect.x, self.card_rect.y))
     def draw(self, surface, scroll_rect):
         if not self.released:
             if self.card_rect.right > scroll_rect.left + 10:  # Adjusted to not cover the scroll bar border
@@ -88,20 +77,9 @@ class Card(pygame.sprite.Sprite):
                 surface.blit(self.image, visible_part, area=visible_part_relative)
         surface.blit(self.image, (self.card_rect.x, self.card_rect.y))
 
-    def move_right(self):
-        # 增加卡片移动速度到当前位置
-        self.card_rect.x += self.card_speed
-        # 注意：这里我们只移动self.rect的x值，因为draw方法中的位置是基于self.rect.x计算的
-
     def get_card_type(self):
         return self.type
 
     def clear_image(self):
         # 假设image_to_clear是一个pygame.Surface对象
         self.kill()  # 使用透明颜色填充图像
-
-    # def follow_hand(self):
-    #     if self.gestureStatus:
-    #         if self.rect.collidepoint(self.hand.rect):
-    #             self.card_rect.center = self.hand.rect.center  # 更新卡片的位置为手的位置
-    #             self.moving = False

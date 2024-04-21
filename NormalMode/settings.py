@@ -17,12 +17,12 @@ HANDGESTURES_SIZES = (50, 38)
 HANDGESTURE_SIZE_RANDOMIZE = (1, 2)
 BOMB_SIZES = (50, 50)
 BOMB_SIZE_RANDOMIZE = (1.2, 1.5)
-ENEMY_SIZES = (170, 200)
+ENEMY_SIZES = (102, 110)
 SCROLL_BAR_SIZES = (1000, 133)
 CARD_SIZES = (100, 120)
 HEXAGON_SIZES = (100, 100)
 LANE_SIZES = (1000, 160)
-BALL_SIZE = (50, 50)
+BALL_SIZE = (60, 60)
 
 # drawing
 DRAW_HITBOX = False  # will draw all the hitbox
@@ -50,7 +50,7 @@ SOUNDS_VOLUME = 1
 pygame.font.init()
 FONTS = {"small": pygame.font.Font("Silver.ttf", 18), "medium": pygame.font.Font("Silver.ttf", 72),
          "big": pygame.font.Font("Silver.ttf", 120)}
-LANE_COORDINATE = [(870, 155), (870, 310), (870, 465)]
+LANE_COORDINATE = [(1250, 180), (1250, 335), (1250, 490)]
 
 # lane
 LANE_VEL = 155
@@ -59,7 +59,7 @@ LANE_X = 100
 LANE_Y = 160
 
 # screen
-background = pygame.image.load("Assets/background.png")
+background = pygame.image.load("Assets/background1.png")
 # 缩放背景图片以匹配窗口大小
-background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
+background = pygame.transform.scale(background, (SCREEN_WIDTH+100, SCREEN_HEIGHT))
 background_rect = background.get_rect(topleft=(-100, 0))

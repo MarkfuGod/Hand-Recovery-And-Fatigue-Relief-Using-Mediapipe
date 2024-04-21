@@ -9,11 +9,10 @@ class Hand:
         self.image_smaller = image.load("Assets/hand.png", size=(HAND_SIZE - 50, HAND_SIZE - 50))
         self.rect = pygame.Rect(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, HAND_HITBOX_SIZE[0], HAND_HITBOX_SIZE[1])
         self.left_click = False
-        # self.hand_tracking = HandTracking()
+
 
     def follow_mouse(self):  # change the hand pos center at the mouse pos
         self.rect.center = pygame.mouse.get_pos()
-        # self.hand_tracking.display_hand()
 
     def follow_mediapipe_hand(self, x, y):
         self.rect.center = (x, y)
@@ -26,11 +25,3 @@ class Hand:
         if DRAW_HITBOX:
             self.draw_hitbox(surface)
 
-    def on_gesture(self, gestures):  # return a list with all gestures that collide with the hand hitbox
-        return [gesture for gesture in gestures if self.rect.colliderect(gesture.rect)]
-
-    def is_hand_closed(self):
-        if self.left_click:
-            return True
-        else:
-            return False

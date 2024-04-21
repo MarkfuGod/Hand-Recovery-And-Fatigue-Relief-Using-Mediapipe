@@ -108,9 +108,9 @@ class EnemyHandle(pygame.sprite.Sprite):
         # 敌人总数
         self.enemy_number = 0
         # 敌人出现的速度
-        self.enemy_appear_speed = 2000
+        self.enemy_appear_speed = 3000
         # 敌人出现的时间间隔
-        self.enemy_interval = random.randint(1000, self.enemy_appear_speed)
+        self.enemy_interval = random.randint(2000, self.enemy_appear_speed)
         # 敌人上次出现的时间
         self.last_appear_time = pygame.time.get_ticks()
         # 用于存储敌人列表

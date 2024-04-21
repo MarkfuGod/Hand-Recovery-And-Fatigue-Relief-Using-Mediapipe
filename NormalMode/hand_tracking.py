@@ -74,7 +74,7 @@ class HandTracking:
         self.hand_tracking = mp_hands.Hands(static_image_mode=False,
                                             max_num_hands=1,
                                             model_complexity=1,
-                                            min_detection_confidence=0.4,
+                                            min_detection_confidence=0.5,
                                             min_tracking_confidence=0.2)
         self.hand_x = 0
         self.hand_y = 0
@@ -190,9 +190,4 @@ class HandTracking:
     def display_hand(self):
         cv2.imshow("image", self.image)
         cv2.waitKey(1)
-    #
-    # def card_follow_hand(self, card):
-    #     if self.hand_closed:
-    #         if card.rect.collidepoint(self.hand_x, self.hand_y):
-    #             card.rect.center = self.get_hand_center()
-    #             card.moving = False
+
