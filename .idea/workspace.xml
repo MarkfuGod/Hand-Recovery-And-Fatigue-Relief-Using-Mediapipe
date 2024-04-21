@@ -5,31 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4134d735-121f-4d00-89ce-c791e7df5b96" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/NormalMode/Assets/background1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy/6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/Enemy_Reverse/6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/background.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/ball/fire.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/ball/fire.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/ball/golden.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/ball/golden.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/ball/ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/ball/ground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/ball/ice.png" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/Assets/ball/ice.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/Assets/handgesture/handgesture.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/enemy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/hand.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/hand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/hand_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/hand_tracking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NormalMode/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/NormalMode/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,22 +36,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "正在合并 main",
-    "last_opened_file_path": "D:/github/Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe/NormalMode/Assets/Enemy_Reverse",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/github/Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe/NormalMode/Assets/Enemy_Reverse&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\github\Hand-Recovery-And-Fatigue-Relief-Using-Mediapipe\NormalMode\Assets\Enemy_Reverse" />
@@ -166,6 +142,9 @@
       <workItem from="1713593180555" duration="3902000" />
       <workItem from="1713621954007" duration="211000" />
       <workItem from="1713622701270" duration="4617000" />
+      <workItem from="1713697328254" duration="85000" />
+      <workItem from="1713697452721" duration="43000" />
+      <workItem from="1713698620130" duration="57000" />
     </task>
     <servers />
   </component>
@@ -177,7 +156,7 @@
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$numberRecog.coverage" NAME="numberRecog 覆盖结果" MODIFIED="1713282687238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$scroll_bar.coverage" NAME="scroll_bar 覆盖结果" MODIFIED="1713280809231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/temp_hand_game_main$hand_tracking.coverage" NAME="hand_tracking 覆盖结果" MODIFIED="1713156119409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
-    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$main.coverage" NAME="main 覆盖结果" MODIFIED="1713627633272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
+    <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$main.coverage" NAME="main 覆盖结果" MODIFIED="1713698647768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$card.coverage" NAME="card 覆盖结果" MODIFIED="1713237283944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/Hand_Recovery_And_Fatigue_Relief_Using_Mediapipe$game.coverage" NAME="game 覆盖结果" MODIFIED="1713197514398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
     <SUITE FILE_PATH="coverage/temp_hand_game_main$main.coverage" NAME="main Coverage Results" MODIFIED="1713588813269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NormalMode" />
