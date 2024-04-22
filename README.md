@@ -1,6 +1,6 @@
 # Hand-Recovery-&-Fatigue-Relief-Using-Mediapipe
 Innovation Project, Zhengzhou University, 11, 2023
-> 🛠️ This project aims to relieve hand fatigue through gaming with hand gestures
+> 🛠️ **_This project aims to relieve hand fatigue through gaming with hand gestures_**
 ## Requirements:
 _Make sure your `python` version >= `3.7.0`_
 ```shell
