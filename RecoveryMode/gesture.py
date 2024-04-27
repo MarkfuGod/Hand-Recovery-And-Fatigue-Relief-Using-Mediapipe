@@ -1,4 +1,4 @@
-from RecoveryMode.settings import SCREEN_WIDTH
+from settings import SCREEN_WIDTH
 import pygame
 import os
 import random
@@ -71,6 +71,7 @@ class Gesture(pygame.sprite.Sprite):
         surface.blit(self.image, self.rect)
 
     def update(self, surface, index):
+        self.select_gesture(index)
         self.draw(surface)
-        self.select_gesture(index)  # 使用select_gesture来更新选中的图片
-        print(self.get_gesture_count())
+          # 使用select_gesture来更新选中的图片
+        print(self.get_selected_gesture_name())
