@@ -4,26 +4,26 @@
   <section id="demos" class="invisible">
     <div class="image-container">
 
-      <div class="image-item">
-        <img :class="borderClass(0)" src="src/components/images/com_4.jpeg" alt="Image 1">
-        <p>手势1</p>
-      </div>
-      <div class="image-item">
-        <img :class="borderClass(1)" src="src/components/images/com_5.jpg" alt="Image 2">
-        <p>手势2</p>
-      </div>
-      <div class="image-item">
-        <img :class="borderClass(2)" src="src/components/images/com_23.png" alt="Image 3">
-        <p>手势3</p>
-      </div>
-      <div class="image-item">
-        <img :class="borderClass(3)" src="src/components/images/com_24.png" alt="Image 4">
-        <p>手势4</p>
-      </div>
-      <div class="image-item">
-        <img :class="borderClass(4)" src="src/components/images/com_38.jpg" alt="Image 5">
-        <p>手势5</p>
-      </div>
+<!--      <div class="image-item">-->
+<!--        <img :class="borderClass(0)" src="public/images/com_4.jpeg" alt="Image 1">-->
+<!--        <p>手势1</p>-->
+<!--      </div>-->
+<!--      <div class="image-item">-->
+<!--        <img :class="borderClass(1)" src="public/images/com_5.jpg" alt="Image 2">-->
+<!--        <p>手势2</p>-->
+<!--      </div>-->
+<!--      <div class="image-item">-->
+<!--        <img :class="borderClass(2)" src="public/images/com_23.png" alt="Image 3">-->
+<!--        <p>手势3</p>-->
+<!--      </div>-->
+<!--      <div class="image-item">-->
+<!--        <img :class="borderClass(3)" src="public/images/com_24.png" alt="Image 4">-->
+<!--        <p>手势4</p>-->
+<!--      </div>-->
+<!--      <div class="image-item">-->
+<!--        <img :class="borderClass(4)" src="public/images/com_38.jpg" alt="Image 5">-->
+<!--        <p>手势5</p>-->
+<!--      </div>-->
     </div>
 
     <div id="liveView" class="videoView">
