@@ -19,7 +19,18 @@ python main.py
 cd NormalMode/
 python main.py
 ```
-
+### RecoveryMode:
+```shell
+cd RecoveryMode/
+python main.py
+```
+### LoginPage:
+***Make sure you have `npm` dependency***
+```shell
+cd vue-test1/
+npm install
+npm run dev
+```
 💡: We code this project mainly using `IDEA`, so if you are encountering `import` errors like :
 `could not find NormalMode.enmey` 
 
