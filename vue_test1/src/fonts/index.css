@@ -1,0 +1,6 @@
+	/*公共字体的样式 */
+	@font-face {
+        font-family: 'douyu';
+        src:url('./douyuFont.otf') format('opentype'), 
+      }
+  

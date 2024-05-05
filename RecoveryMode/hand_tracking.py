@@ -1,235 +1,195 @@
-
-import argparse
-import sys
-import time
-
+import math
+import numpy as np
 import cv2
 import mediapipe as mp
+from settings import *
 
-from mediapipe.tasks import python
-from mediapipe.tasks.python import vision
-from mediapipe.framework.formats import landmark_pb2
-mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
+mp_hands = mp.solutions.hands
 
 
-# Global variables to calculate FPS
-COUNTER, FPS = 0, 0
-START_TIME = time.time()
+# TODO: Change the detection mode here to Gesture
+
+def h_gesture(angle_list):
+    """
+        # 二维约束的方法定义手势
+        每个手势都有一个特定的角度阈值，如果所有的角度都满足这个阈值，那么就认为是这个手势。
+        # fist five gun love one six three thumbup yeah
+    """
+    thr_angle = 65.
+    thr_angle_thumb = 53.
+    thr_angle_s = 49.
+    gesture_str = None
+    if 65535. not in angle_list:
+        if (angle_list[0] > thr_angle_thumb) and (angle_list[1] > thr_angle) and (angle_list[2] > thr_angle) and (
+                angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+            gesture_str = "fist"
+        # elif (angle_list[0] < thr_angle_s) and (angle_list[1] < thr_angle_s) and (angle_list[2] < thr_angle_s)
+        # and ( angle_list[3] < thr_angle_s) and (angle_list[4] < thr_angle_s): gesture_str = "five"
+        elif (angle_list[0] < thr_angle_s) and (angle_list[1] < thr_angle_s) and (angle_list[2] > thr_angle) and (
+                angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+            gesture_str = "gun"
+        elif (angle_list[0] < thr_angle_s) and (angle_list[1] < thr_angle_s) and (angle_list[2] > thr_angle) and (
+                angle_list[3] > thr_angle) and (angle_list[4] < thr_angle_s):
+            gesture_str = "love"
+        elif (angle_list[0] > 5) and (angle_list[1] < thr_angle_s) and (angle_list[2] > thr_angle) and (
+                angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+            gesture_str = "one"
+        elif (angle_list[0] < thr_angle_s) and (angle_list[1] > thr_angle) and (angle_list[2] > thr_angle) and (
+                angle_list[3] > thr_angle) and (angle_list[4] < thr_angle_s):
+            gesture_str = "six"
+        elif (angle_list[0] > thr_angle_thumb) and (angle_list[1] < thr_angle_s) and (
+                angle_list[2] < thr_angle_s) and (angle_list[3] < thr_angle_s) and (angle_list[4] > thr_angle):
+            gesture_str = "three"
+        elif (angle_list[0] < thr_angle_s) and (angle_list[1] > thr_angle) and (angle_list[2] > thr_angle) and (
+                angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+            gesture_str = "thumbup"
+        elif (angle_list[0] > thr_angle_thumb) and (angle_list[1] < thr_angle_s) and (
+                angle_list[2] < thr_angle_s) and (angle_list[3] > thr_angle) and (angle_list[4] > thr_angle):
+            gesture_str = "two"
+    return gesture_str
 
 
-def run(model: str, num_hands: int,
-        min_hand_detection_confidence: float,
-        min_hand_presence_confidence: float, min_tracking_confidence: float,
-        camera_id: int, width: int, height: int) -> None:
-  """Continuously run inference on images acquired from the camera.
-
-  Args:
-      model: Name of the gesture recognition model bundle.
-      num_hands: Max number of hands can be detected by the recognizer.
-      min_hand_detection_confidence: The minimum confidence score for hand
-        detection to be considered successful.
-      min_hand_presence_confidence: The minimum confidence score of hand
-        presence score in the hand landmark detection.
-      min_tracking_confidence: The minimum confidence score for the hand
-        tracking to be considered successful.
-      camera_id: The camera id to be passed to OpenCV.
-      width: The width of the frame captured from the camera.
-      height: The height of the frame captured from the camera.
-  """
-
-  # Start capturing video input from the camera
-  cap = cv2.VideoCapture(camera_id)
-  cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-  cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-
-  # Visualization parameters
-  row_size = 50  # pixels
-  left_margin = 24  # pixels
-  text_color = (0, 0, 0)  # black
-  font_size = 1
-  font_thickness = 1
-  fps_avg_frame_count = 10
-
-  # Label box parameters
-  label_text_color = (255, 255, 255)  # white
-  label_font_size = 1
-  label_thickness = 2
-
-  recognition_frame = None
-  recognition_result_list = []
-
-  def save_result(result: vision.GestureRecognizerResult,
-                  unused_output_image: mp.Image, timestamp_ms: int):
-      global FPS, COUNTER, START_TIME
-
-      # Calculate the FPS
-      if COUNTER % fps_avg_frame_count == 0:
-          FPS = fps_avg_frame_count / (time.time() - START_TIME)
-          START_TIME = time.time()
-
-      recognition_result_list.append(result)
-      COUNTER += 1
-
-  # Initialize the gesture recognizer model
-  base_options = python.BaseOptions(model_asset_path=model)
-  options = vision.GestureRecognizerOptions(base_options=base_options,
-                                          running_mode=vision.RunningMode.LIVE_STREAM,
-                                          num_hands=num_hands,
-                                          min_hand_detection_confidence=min_hand_detection_confidence,
-                                          min_hand_presence_confidence=min_hand_presence_confidence,
-                                          min_tracking_confidence=min_tracking_confidence,
-                                          result_callback=save_result)
-  recognizer = vision.GestureRecognizer.create_from_options(options)
-
-  # Continuously capture images from the camera and run inference
-  while cap.isOpened():
-    success, image = cap.read()
-    if not success:
-      sys.exit(
-          'ERROR: Unable to read from webcam. Please verify your webcam settings.'
-      )
-
-    image = cv2.flip(image, 1)
-
-    # Convert the image from BGR to RGB as required by the TFLite model.
-    rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_image)
-
-    # Run gesture recognizer using the model.
-    recognizer.recognize_async(mp_image, time.time_ns() // 1_000_000)
-
-    # Show the FPS
-    fps_text = 'FPS = {:.1f}'.format(FPS)
-    text_location = (left_margin, row_size)
-    current_frame = image
-    cv2.putText(current_frame, fps_text, text_location, cv2.FONT_HERSHEY_DUPLEX,
-                font_size, text_color, font_thickness, cv2.LINE_AA)
-
-    if recognition_result_list:
-      # Draw landmarks and write the text for each hand.
-      for hand_index, hand_landmarks in enumerate(
-          recognition_result_list[0].hand_landmarks):
-        # Calculate the bounding box of the hand
-        x_min = min([landmark.x for landmark in hand_landmarks])
-        y_min = min([landmark.y for landmark in hand_landmarks])
-        y_max = max([landmark.y for landmark in hand_landmarks])
-
-        # Convert normalized coordinates to pixel values
-        frame_height, frame_width = current_frame.shape[:2]
-        x_min_px = int(x_min * frame_width)
-        y_min_px = int(y_min * frame_height)
-        y_max_px = int(y_max * frame_height)
-
-        # Get gesture classification results
-        if recognition_result_list[0].gestures:
-          gesture = recognition_result_list[0].gestures[hand_index]
-          category_name = gesture[0].category_name
-          score = round(gesture[0].score, 2)
-          result_text = f'{category_name} ({score})'
-
-          # Compute text size
-          text_size = \
-          cv2.getTextSize(result_text, cv2.FONT_HERSHEY_DUPLEX, label_font_size,
-                          label_thickness)[0]
-          text_width, text_height = text_size
-
-          # Calculate text position (above the hand)
-          text_x = x_min_px
-          text_y = y_min_px - 10  # Adjust this value as needed
-
-          # Make sure the text is within the frame boundaries
-          if text_y < 0:
-            text_y = y_max_px + text_height
-
-          # Draw the text
-          cv2.putText(current_frame, result_text, (text_x, text_y),
-                      cv2.FONT_HERSHEY_DUPLEX, label_font_size,
-                      label_text_color, label_thickness, cv2.LINE_AA)
-
-        # Draw hand landmarks on the frame
-        hand_landmarks_proto = landmark_pb2.NormalizedLandmarkList()
-        hand_landmarks_proto.landmark.extend([
-          landmark_pb2.NormalizedLandmark(x=landmark.x, y=landmark.y,
-                                          z=landmark.z) for landmark in
-          hand_landmarks
-        ])
-        mp_drawing.draw_landmarks(
-          current_frame,
-          hand_landmarks_proto,
-          mp_hands.HAND_CONNECTIONS,
-          mp_drawing_styles.get_default_hand_landmarks_style(),
-          mp_drawing_styles.get_default_hand_connections_style())
-
-      recognition_frame = current_frame
-      recognition_result_list.clear()
-
-    if recognition_frame is not None:
-        cv2.imshow('gesture_recognition', recognition_frame)
-
-    # Stop the program if the ESC key is pressed.
-    if cv2.waitKey(1) == 27:
-        break
-
-  recognizer.close()
-  cap.release()
-  cv2.destroyAllWindows()
+def vector_2d_angle(v1, v2):
+    """
+        求解二维向量的角度
+    """
+    v1_x = v1[0]
+    v1_y = v1[1]
+    v2_x = v2[0]
+    v2_y = v2[1]
+    try:
+        angle_ = math.degrees(math.acos(
+            (v1_x * v2_x + v1_y * v2_y) / (((v1_x ** 2 + v1_y ** 2) ** 0.5) * ((v2_x ** 2 + v2_y ** 2) ** 0.5))))
+    except:
+        angle_ = 65535.
+    if angle_ > 180.:
+        angle_ = 65535.
+    return angle_
 
 
-def main():
-  parser = argparse.ArgumentParser(
-      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-  parser.add_argument(
-      '--model',
-      help='Name of gesture recognition model.',
-      required=False,
-      default='gesture_recognizer.task')
-  parser.add_argument(
-      '--numHands',
-      help='Max number of hands that can be detected by the recognizer.',
-      required=False,
-      default=1)
-  parser.add_argument(
-      '--minHandDetectionConfidence',
-      help='The minimum confidence score for hand detection to be considered '
-           'successful.',
-      required=False,
-      default=0.5)
-  parser.add_argument(
-      '--minHandPresenceConfidence',
-      help='The minimum confidence score of hand presence score in the hand '
-           'landmark detection.',
-      required=False,
-      default=0.5)
-  parser.add_argument(
-      '--minTrackingConfidence',
-      help='The minimum confidence score for the hand tracking to be '
-           'considered successful.',
-      required=False,
-      default=0.5)
-  # Finding the camera ID can be very reliant on platform-dependent methods.
-  # One common approach is to use the fact that camera IDs are usually indexed sequentially by the OS, starting from 0.
-  # Here, we use OpenCV and create a VideoCapture object for each potential ID with 'cap = cv2.VideoCapture(i)'.
-  # If 'cap' is None or not 'cap.isOpened()', it indicates the camera ID is not available.
-  parser.add_argument(
-      '--cameraId', help='Id of camera.', required=False, default=0)
-  parser.add_argument(
-      '--frameWidth',
-      help='Width of frame to capture from camera.',
-      required=False,
-      default=640)
-  parser.add_argument(
-      '--frameHeight',
-      help='Height of frame to capture from camera.',
-      required=False,
-      default=480)
-  args = parser.parse_args()
+class HandTracking:
+    def __init__(self):
+        self.hand_tracking = mp_hands.Hands(static_image_mode=False,
+                                            max_num_hands=1,
+                                            model_complexity=1,
+                                            min_detection_confidence=0.5,
+                                            min_tracking_confidence=0.2)
+        self.hand_x = 0
+        self.hand_y = 0
+        self.results = None
+        self.love = False
+        self.six = False
+        self.three = False
+        self.gun = False
+        self.fist = False
+        # self.thumb_down = False
+        self.one = False
+        self.two = False
+        self.thumbup = False
 
-  run(args.model, int(args.numHands), args.minHandDetectionConfidence,
-      args.minHandPresenceConfidence, args.minTrackingConfidence,
-      int(args.cameraId), args.frameWidth, args.frameHeight)
+    def hand_angle(self, hand_):
+        """
+            获取对应手相关向量的二维角度,根据角度确定手势
+            这个角度是通过计算两个向量之间的角度得到的，这两个向量分别是从手腕到指关节的向量和从指关节到指尖的向量。
+            计算出的每个角度都被添加到一个列表中，然后返回这个列表。
+        """
+        angle_list = []
+        # ---------------------------- thumb 大拇指角度
+        angle_ = vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[2][0])), (int(hand_[0][1]) - int(hand_[2][1]))),
+            ((int(hand_[3][0]) - int(hand_[4][0])), (int(hand_[3][1]) - int(hand_[4][1])))
+        )
+        angle_list.append(angle_)
+        # ---------------------------- index 食指角度
+        angle_ = vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[6][0])), (int(hand_[0][1]) - int(hand_[6][1]))),
+            ((int(hand_[7][0]) - int(hand_[8][0])), (int(hand_[7][1]) - int(hand_[8][1])))
+        )
+        angle_list.append(angle_)
+        # ---------------------------- middle 中指角度
+        angle_ = vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[10][0])), (int(hand_[0][1]) - int(hand_[10][1]))),
+            ((int(hand_[11][0]) - int(hand_[12][0])), (int(hand_[11][1]) - int(hand_[12][1])))
+        )
+        angle_list.append(angle_)
+        # ---------------------------- ring 无名指角度
+        angle_ = vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[14][0])), (int(hand_[0][1]) - int(hand_[14][1]))),
+            ((int(hand_[15][0]) - int(hand_[16][0])), (int(hand_[15][1]) - int(hand_[16][1])))
+        )
+        angle_list.append(angle_)
+        # ---------------------------- pink 小拇指角度
+        angle_ = vector_2d_angle(
+            ((int(hand_[0][0]) - int(hand_[18][0])), (int(hand_[0][1]) - int(hand_[18][1]))),
+            ((int(hand_[19][0]) - int(hand_[20][0])), (int(hand_[19][1]) - int(hand_[20][1])))
+        )
+        angle_list.append(angle_)
+        return angle_list
 
+    def scan_hands(self, image):
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image.flags.writeable = False
+        self.results = self.hand_tracking.process(image)
+        image.flags.writeable = True
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-if __name__ == '__main__':
-  main()
+        self.love = False
+        self.six = False
+        # self.thumb_down = False
+        self.one = False
+        self.two = False
+        self.fist = False
+        self.gun = False
+        self.thumbup = False
+        self.three = False
+
+        if self.results.multi_hand_landmarks:
+            gesture_strs = []
+            avg_xs = []
+            for hand_landmarks in self.results.multi_hand_landmarks:
+                mp_drawing.draw_landmarks(image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+                # 获取关键点坐标
+                # landmarks = hand_landmarks.landmark
+                x, y = hand_landmarks.landmark[9].x, hand_landmarks.landmark[9].y
+                self.hand_x = int(x * SCREEN_WIDTH)
+                self.hand_y = int(y * SCREEN_HEIGHT)
+                hand_local = []
+                for i in range(21):
+                    x = hand_landmarks.landmark[i].x * image.shape[1]
+                    y = hand_landmarks.landmark[i].y * image.shape[0]
+                    hand_local.append((x, y))
+                if hand_local:
+                    angle_list = self.hand_angle(hand_local)
+                    gesture_str = h_gesture(angle_list)
+                    if gesture_str == 'love':
+                        self.love = True
+                    elif gesture_str == 'six':
+                        self.six = True
+                    elif gesture_str == 'one':
+                        self.one = True
+                    elif gesture_str == 'two':
+                        self.two = True
+                    elif gesture_str == 'three':
+                        self.three =True
+                    elif gesture_str == 'gun':
+                        self.gun = True
+                    elif gesture_str == 'thumbup':
+                        self.thumbup = True
+                    elif gesture_str == 'fist':
+                        self.fist = True
+                    gesture_strs.append(gesture_str)
+                    # print(gesture_strs)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image = np.rot90(image)
+        image = pygame.surfarray.make_surface(image)
+        return image
+
+    def get_hand_center(self):
+        return self.hand_x, self.hand_y
+
+    def display_hand(self):
+        cv2.imshow("image", self.image)
+        cv2.waitKey(1)
+

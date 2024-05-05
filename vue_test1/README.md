@@ -27,3 +27,10 @@ npm run dev
 ```sh
 npm run build
 ```
+
+\*
+<video autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <source src="src\components\images\bg-video.mp4" type="video/mp4">
+  </video>
+*\
