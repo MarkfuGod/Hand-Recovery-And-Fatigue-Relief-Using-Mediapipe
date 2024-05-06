@@ -11,30 +11,35 @@ import image2 from './components/images/8bf69b8ce619d69d9d31a4d9cdcb595d.jpeg'
 
 </script>
 
+
 <template>
 <div class="app-background">
-  
-<button @click="back" class="back-button">返回主页</button>
+  <div class="videoContainer">
+      <video class="fullscreenVideo" id="bgVid" playsinline="" autoplay="" muted="" loop="" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;z-index: -1;">
+        <source src="src\components\images\bg.mp4" type="video/mp4">
+      </video>
+    </div>
+<button @click="back" class="back-button"><div class=custom-font>返回主页</div></button>
  <img src="./components/images/logo.png" alt="Logo" class="centered-image" style="display: block;
   margin: 0 auto; /* 水平居中 */
   max-width: 20%; /* 确保图片不会超出屏幕宽度 */
-  height: auto;">
+  height: auto; opacity:10">
   <div v-if="elTestShow===0">
     <div class="common-layout">
       <el-container>
-        <el-header class="title" style="color: aqua;">基于手势的手部康复游戏</el-header>
+        <el-header class="title" style="color: aqua;"><div class=custom-font>基于手势的手部康复游戏</div></el-header>
         <el-main>
           <div v-if="elShow===0">
-            <el-input v-model="input" placeholder="请输入用户名" style="width: 50%;margin-left: 42%;display: block;justify-content: center;"></el-input>
-            <el-input v-model="input1" placeholder="请输入密码" style="width: 50%;margin-left: 42%;display: block;justify-content: center;"></el-input>
-           <el-button type="primary" @click="ok" style="width: 5%; margin-left: 42%">登录</el-button>
-<el-button type="success" @click="registerNo" style="width: 5%; ">注册</el-button>
+            <el-input v-model="input" placeholder="请输入用户名" style="width: 50%;margin-left: 44%;display: block;justify-content: center;font-family: douyu;"></el-input>
+            <el-input v-model="input1" placeholder="请输入密码" style="width: 50%;margin-left: 44%;display: block;justify-content: center;"></el-input>
+           <el-button type="primary" @click="ok" style="width: 5%; margin-left: 44%"><div class=custom-font>登录</div></el-button>
+<el-button type="success" @click="registerNo" style="width: 5%; "><div class=custom-font>注册</div></el-button>
 
           </div>
           <div v-if="elShow===2">
-            <el-input v-model="input2" placeholder="请输入用户名" style="width: 50%;margin-left: 42%;display: block;justify-content: center;"></el-input>
-            <el-input v-model="input3" placeholder="请输入密码" style="width: 50%;margin-left: 42%;display: block;justify-content: center;"></el-input>
-            <el-button type="success" @click="registerOk" style="width: 10%; margin-left: 42%">注册</el-button>
+            <el-input v-model="input2" placeholder="请输入用户名" style="width: 50%;margin-left: 44%;display: block;justify-content: center;"></el-input>
+            <el-input v-model="input3" placeholder="请输入密码" style="width: 50%;margin-left: 44%;display: block;justify-content: center;"></el-input>
+            <el-button type="success" @click="registerOk" style="width: 10%; margin-left: 44%">注册</el-button>
           </div>
           <div v-if="elShow===1" class="image-button-wrapper">
             <div v-for="(item, index) in items" :key="index" class="image-button-container">
@@ -113,9 +118,15 @@ methods:{
 
 @import './assets/styles.css';
 .app-background {
-  background-image: url('./components/images/background.png'); /* 设置背景图像 */
+  background-image: url('./components/images/'); /* 设置背景图像 */
   background-size: cover; /* 背景图像覆盖整个容器 */
   background-position: center; /* 背景图像居中显示 */
   height: 100vh; /* 设置容器高度为视口高度 */
+  opacity: 1;
+  z-index: 1;
 }
+.custom-font {
+  font-family: douyu; /* 替换为您的字体系列 */
+}
+
 </style>
