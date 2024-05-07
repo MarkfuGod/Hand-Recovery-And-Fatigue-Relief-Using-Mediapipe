@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       items: [
-        { image: 'src/components/images/8bf69b8ce619d69d9d31a4d9cdcb595d.jpeg', buttonText: '普通模式',shijian:'h' },
+        { image: 'src/components/images/Normal.jpg', buttonText: '普通模式',shijian:'h' },
         { image: 'src/components/images/9.png', buttonText: '无尽模式',shijian:'h' },
         { image: 'src/components/images/10.png', buttonText: '闯关模式' ,shijian:'h'},
       ]
