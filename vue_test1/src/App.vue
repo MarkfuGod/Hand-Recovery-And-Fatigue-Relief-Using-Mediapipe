@@ -4,9 +4,9 @@ import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import ElText from './ElTest.vue'
 import image1 from './assets/6.jpg'
-import image3 from './components/images/10.png'
+import image3 from './components/images/Challenge.jpg'
 import MeTest from './MeTest.vue'
-import image2 from './components/images/8bf69b8ce619d69d9d31a4d9cdcb595d.jpeg'
+import image2 from './components/images/Recovery.jpg'
 
 
 </script>
@@ -81,26 +81,26 @@ export default {
       input2:'',
       input3:'',
       items: [
-        { image: 'images/8bf69b8ce619d69d9d31a4d9cdcb595d.jpeg', buttonText: '普通模式',shijian:'h' },
-        { image: 'images/9.png', buttonText: '无尽模式',shijian:'h' },
-        { image: 'images/10.png', buttonText: '闯关模式' ,shijian:'h'},
+        { image: 'src\\components\\images\\Normal.jpg', buttonText: '普通模式',shijian:'h' },
+        { image: 'src\\components\\images\\Recovery.jpg', buttonText: '恢复模式',shijian:'h' },
+        { image: 'src\\components\\images\\Challenge.jpg', buttonText: '挑战模式' ,shijian:'h'},
       ]
     }
   },
 methods:{
     show(){
       this.elTestShow=1;
-      alert(this.elTestShow)
+      //alert(this.elTestShow)
     },
   ss(){
-    alert(this.elTestShow)
+    //alert(this.elTestShow)
   },
   back(){
       this.elTestShow=0;
   },
   ok(){
       this.elShow=1;
-      alert(this.elShow)
+      //alert(this.elShow)
   },
   registerNo(){
       this.elShow=2;
