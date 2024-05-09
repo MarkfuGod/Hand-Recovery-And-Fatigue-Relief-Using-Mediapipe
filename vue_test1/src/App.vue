@@ -31,7 +31,7 @@ import image2 from './components/images/Recovery.jpg'
         <el-main>
           <div v-if="elShow===0">
             <el-input v-model="input" placeholder="请输入用户名" style="width: 50%;margin-left: 44%;display: block;justify-content: center;font-family: douyu;"></el-input>
-            <el-input v-model="input1" placeholder="请输入密码" style="width: 50%;margin-left: 44%;display: block;justify-content: center;"></el-input>
+            <el-input v-model="input1" type="password" placeholder="请输入密码" style="width: 50%;margin-left: 44%;display: block;justify-content: center;"></el-input>
            <el-button type="primary" @click="ok" style="width: 5%; margin-left: 44%"><div class=custom-font>登录</div></el-button>
 <el-button type="success" @click="registerNo" style="width: 5%; "><div class=custom-font>注册</div></el-button>
 
