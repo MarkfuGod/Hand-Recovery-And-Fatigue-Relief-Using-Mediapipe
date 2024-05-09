@@ -27,12 +27,12 @@ python main.py
 ### LoginPage:
 ***Make sure you have `npm` dependency***
 ```shell
-cd vue-test1/
+cd vue_test1/
 npm install
 npm run dev
 ```
 💡: We code this project mainly using `IDEA`, so if you are encountering `import` errors like :
-`could not find NormalMode.enmey` 
+`could not find NormalMode.enemy` 
 
 _you could delete the ~`NormalMode`~ like this:_
 ```python
